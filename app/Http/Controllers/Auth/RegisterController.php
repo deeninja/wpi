@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 
 class RegisterController extends Controller
 {
+    use AuthenticableTrait;
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -51,6 +56,7 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'phone' => 'required|min:10',
         ]);
     }
 
@@ -62,10 +68,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+       return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
     }
+
 }
