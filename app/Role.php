@@ -8,6 +8,7 @@ class Role extends Model
 {
     // mass assign
     protected $fillable = [
+        'id',
         'name'
     ];
 
@@ -15,6 +16,6 @@ class Role extends Model
     // 1:M relational join
     public function users()
     {
-        return $this->belongsToMany('App\Role');
+        return $this->belongsToMany('App\User');
     }
 }
