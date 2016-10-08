@@ -19,11 +19,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+
+Route::resource('admin/users', 'AdminUsersController');
+
+/* cms page display routes
+----------------------------------------------------------------------------------------------*/
+
+// cms
 Route::get('/admin', function() {
 
     return view('admin.index');
 
 });
 
-Route::resource('admin/users', 'AdminUsersController');
+// view users
+Route::get('admin/users', ['as'=>'admin.users','uses'=>'AdminUsersController@index']);
 
+// create user
+Route::get('admin/users/create', ['as' => 'admin.users.create', 'uses'=>'AdminUsersController@create']);

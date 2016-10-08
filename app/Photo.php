@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
+
+    // mass assign.
+    protected $fillable = ['path'];
     // defining photo -- 1:1 --> user relationship (user can have 1 & only 1 photo)
     public function user() {
 
