@@ -4,10 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UsersRequest extends FormRequest
+class UsersEditRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * determine if the user is authorized to make this request.
      *
      * @return bool
      */
@@ -17,19 +17,20 @@ class UsersRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * get the validation rules that apply to the request.
      *
      * @return array
      */
     public function rules()
     {
+        $this->sanitize();
+
         return [
-            'first_name'=>'required|alpha',
-            'last_name'=>'required|alpha',
-            'photo_id'=>'image',
-            'role_id'=>'required',
-            'password'=>'min:6',
-            'status'=>'required',
+            'first_name' => 'required|alpha',
+            'last_name' => 'required|alpha',
+            'email'=>'required',
+            'role_id' => 'required',
+            'status' => 'required',
         ];
     }
 
@@ -51,7 +52,6 @@ class UsersRequest extends FormRequest
 
         // replaces the array of input values with sanitized values.
         $this->replace($inputs);
-
 
     }
 }

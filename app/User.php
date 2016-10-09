@@ -9,15 +9,19 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'role_id',
+        'photo_id',
         'status',
         'password',
         'phone'
@@ -37,10 +41,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\Role');
     }
 
-    // defining user 0:1 photo
+    // defining user 0:1 photo ( WGY BELONGSTO NOT HAS ONE ) ??!
     public function photo() {
 
-        return $this->hasOne('App\Photo');
+        return $this->belongsTo('App\Photo');
 
 
     }

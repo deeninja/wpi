@@ -2,9 +2,15 @@
 
 @section('content')
 
-    <h1>Create User</h1>
+    <h1>Edit User</h1>
 
-    {!! Form::open(['method' => 'POST', 'action'=> 'AdminUsersController@store', 'files'=>'true']) !!}
+    <div>
+        <img class="img-responsive img-rounded" width="160" src="{{$user->photo ? $user->photo->path : ''}}">
+    </div>
+
+    {!! Form::model($user, ['method' => 'PATCH', 'action'=> ['AdminUsersController@update', $user->id], 'files'=>'true']) !!}
+
+
 
     <div class="form-group">
         {!! Form::label('photo_id', 'Photo:') !!}
@@ -42,7 +48,7 @@
     </div>
 
     <div class="form-group">
-        {!! Form::submit('Create User', ['class'=>'btn btn-primary']) !!}
+        {!! Form::submit('Edit User', ['class'=>'btn btn-primary']) !!}
     </div>
 
     {!! Form::close() !!}

@@ -36,4 +36,7 @@ Route::get('/admin', function() {
 Route::get('admin/users', ['as'=>'admin.users','uses'=>'AdminUsersController@index']);
 
 // create user
-Route::get('admin/users/create', ['as' => 'admin.users.create', 'uses'=>'AdminUsersController@create']);
+Route::get('admin/users/create', ['as' => 'users.create', 'uses'=>'AdminUsersController@create']);
+
+// edit user
+//Route::get('admin/users/{user}/edit ', ['as'=>'admin.users.edit', 'uses'=>'AdminUsersController@edit']);
