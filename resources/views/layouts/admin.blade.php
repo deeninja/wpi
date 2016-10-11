@@ -25,8 +25,6 @@
     <![endif]-->
 
 
-
-
 </head>
 
 <body id="admin-page">
@@ -47,14 +45,14 @@
         <!-- /.navbar-header -->
 
 
-
         <ul class="nav navbar-top-links navbar-right">
 
 
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user fa-fw"></i> {{ Auth::user()->first_name . ' ' . Auth::user()->last_name}}<i
+                            class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -62,7 +60,16 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li>
+                        <a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -71,10 +78,6 @@
 
 
         </ul>
-
-
-
-
 
 
         {{--<ul class="nav navbar-nav navbar-right">--}}
@@ -97,10 +100,7 @@
         {{--@endif--}}
         {{--</ul>--}}
 
-
-
-
-
+        {{-- side navbar --}}
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
@@ -119,6 +119,8 @@
                         <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
 
+
+                    {{-- users --}}
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>Users<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -131,8 +133,24 @@
                             </li>
 
                         </ul>
-                        <!-- /.nav-second-level -->
                     </li>
+                    {{-- /.users --}}
+
+                    {{-- conferences --}}
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Conferences<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('admin.users')}}">Add New</a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('users.create')}}">Conferences</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    {{-- /.conferences --}}
 
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
@@ -182,11 +200,6 @@
                     </li>
 
 
-
-
-
-
-
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -230,7 +243,8 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span
+                                    class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="#">Second Level Item</a>
@@ -277,11 +291,8 @@
             </div>
             <!-- /.sidebar-collapse -->
         </div>
-        <!-- /.navbar-static-side -->
+        {{-- /.side navbar --}}
     </nav>
-
-
-
 
 
     <div class="navbar-default sidebar" role="navigation">
@@ -315,10 +326,6 @@
 </div>
 
 
-
-
-
-
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
@@ -344,9 +351,6 @@
 
 
 @yield('footer')
-
-
-
 
 
 </body>

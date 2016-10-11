@@ -26,11 +26,11 @@ class UsersEditRequest extends FormRequest
         $this->sanitize();
 
         return [
-            'first_name' => 'required|alpha',
-            'last_name' => 'required|alpha',
-            'email'=>'required',
-            'role_id' => 'required',
-            'status' => 'required',
+        'first_name' => 'required|alpha',
+        'last_name' => 'required|alpha',
+        //'email' => 'unique:users|email', // . "$this->id",
+        'role_id' => 'required',
+        'status' => 'required',
         ];
     }
 

@@ -1,7 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
+    {{-- if there is a session variable called deleted_user, echo it --}}
+    @if(Session::has('deleted_user'))
+        <div class="alert-danger panel panel-red">
+            <h4 class="text-warning"><i>{{session('deleted_user')}}</i></h4>
+        </div>
+    @endif
 
+    @if(Session::has('updated_message'))
+        <div class="alert-success panel panel-green">
+            <h4 class="text-success"><i>{{session('updated_message')}}</i></h4>
+        </div>
+    @endif
     <h1>Users</h1>
 
     <div class="table-responsive">

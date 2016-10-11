@@ -19,12 +19,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+/* admin / backend routes (middleware to ensure only authorized+active users can access)
+----------------------------------------------------------------------------------------------*/
+Route::group(['middleware'=>'admin'], function() {
 
-Route::resource('admin/users', 'AdminUsersController');
+    Route::resource('admin/users', 'AdminUsersController');
+
+
+});
 
 /* cms page display routes
 ----------------------------------------------------------------------------------------------*/
-
 // cms
 Route::get('/admin', function() {
 
@@ -32,11 +37,8 @@ Route::get('/admin', function() {
 
 });
 
-// view users
+// view users route with alias
 Route::get('admin/users', ['as'=>'admin.users','uses'=>'AdminUsersController@index']);
 
-// create user
+// create user route with alias
 Route::get('admin/users/create', ['as' => 'users.create', 'uses'=>'AdminUsersController@create']);
-
-// edit user
-//Route::get('admin/users/{user}/edit ', ['as'=>'admin.users.edit', 'uses'=>'AdminUsersController@edit']);

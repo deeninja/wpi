@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use App\User;
 use App\Role;
 use App\Photo;
+
+use App\Http\Requests;
 use App\Http\Requests\UsersRequest;
 use App\Http\Requests\UsersEditRequest;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
 {
@@ -20,9 +24,18 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
+        // get logged in/auth'd user.
+        $user = Auth::user();
 
+        // if user is admin && active, redirect to users with user data.
+        if ($user->isAdmin()){
         $users = User::all();
         return view('admin.users.index', compact('users'));
+        }
+
+        // else redirect home.
+        return redirect('/home');
+
     }
 
     /**
@@ -172,6 +185,8 @@ class AdminUsersController extends Controller
         $user->status = $form_data['status'];
         $user->save();*/
 
+        Session::flash('updated_message', 'The user has been updated.');
+
         return redirect('/admin/users');
 
     }
@@ -184,6 +199,18 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // find user.
+        $user = User::findOrFail($id);
+
+        // destroy related image.
+        unlink(public_path() . $user->photo->path);
+
+        // delete user record.
+        $user->delete();
+
+        // create flash deleted notif
+        Session::flash('deleted_user', 'The user has been deleted.');
+
+        return redirect('admin/users');
     }
 }

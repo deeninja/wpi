@@ -9,10 +9,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-
-
     /**
-     * The attributes that are mass assignable.
+     * the attributes that are mass assignable.
      *
      * @var array
      */
@@ -28,7 +26,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * the attributes that should be hidden for arrays.
      *
      * @var array
      */
@@ -43,8 +41,18 @@ class User extends Authenticatable
 
     // defining user 0:1 photo ( WGY BELONGSTO NOT HAS ONE ) ??!
     public function photo() {
-
         return $this->belongsTo('App\Photo');
+    }
+
+    public function isAdmin()
+    {
+        if($this->role->name === "Administrator" && $this->status == "Active"){
+
+            return true;
+
+            }
+
+        return false;
 
 
     }
