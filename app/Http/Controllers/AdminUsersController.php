@@ -177,7 +177,10 @@ class AdminUsersController extends Controller
 
         // update user with form data.
         $user->update($form_data);
-        /*$user->role_id = $form_data['role_id'];
+
+        /* **** same as ****
+
+         * $user->role_id = $form_data['role_id'];
         $user->photo_id = $form_data['photo_id'];
         $user->first_name = $form_data['first_name'];
         $user->last_name = $form_data['last_name'];

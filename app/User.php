@@ -39,7 +39,7 @@ class User extends Authenticatable
         return $this->belongsTo('App\Role');
     }
 
-    // defining user 0:1 photo ( WGY BELONGSTO NOT HAS ONE ) ??!
+    // defining user 0:1 photo ( WHY BELONGSTO NOT HAS ONE ) ??!
     public function photo() {
         return $this->belongsTo('App\Photo');
     }

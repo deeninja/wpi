@@ -23,6 +23,8 @@ class UsersRequest extends FormRequest
      */
     public function rules()
     {
+        $this->sanitize();
+
         return [
             'first_name'=>'required|alpha',
             'last_name'=>'required|alpha',

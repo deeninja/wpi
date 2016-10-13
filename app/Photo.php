@@ -16,11 +16,17 @@ class Photo extends Model
     }
 
     // mass assign.
-    protected $fillable = ['path'];
+    protected $fillable = ['id','path'];
 
     // defining photo -- 1:1 --> user relationship (user can have 1 & only 1 photo)
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    // define 1:1 relationship with photo model
+    public function conference()
+    {
+        return $this->belongsTo('App\Conference');
     }
 }

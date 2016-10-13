@@ -1206,12 +1206,6 @@ h6,
   line-height: 1.1;
   color: inherit;
 }
-
-h4 {
-  padding-left: 16px;
-  padding-left: 1rem;
-}
-
 h1 small,
 h2 small,
 h3 small,
@@ -8735,5 +8729,6 @@ table.dataTable thead .sorting:after {
 .toppad
 {margin-top:20px;
 }
+
 
 /*# sourceMappingURL=all.css.map */
