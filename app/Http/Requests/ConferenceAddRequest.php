@@ -30,6 +30,7 @@ class ConferenceAddRequest extends FormRequest
         return [
             'title'=>'required',
             'year'=>'required|numeric',
+            'photo_id'=>'required',
             'excerpt'=>'required',
             'details'=>'required'
         ];

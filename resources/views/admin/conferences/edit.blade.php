@@ -4,6 +4,10 @@
 
     <h1>Conference | Edit</h1>
 
+    <div class="panel col-md-12">
+        <img class="img-responsive img-rounded" width="250" src="{{$conference->photo ? '/images/conferences/' . $conference->photo->path : 'http://placehold.it/50x50'}}">
+    </div>
+
     {{-- ['action'=>['ConferencesController@update', $conference->id] appends current rec ID to URL use in controller--}}
     {!! Form::model($conference,['method'=>'PATCH','action'=>['ConferencesController@update', $conference->id],'files'=>'true' ])
      !!}
@@ -40,11 +44,16 @@
 
     {!! Form::close() !!}
 
+@if(count($errors) > 0)
 
-@endsection
+    <div class="alert-danger panel">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
 
-@section('footer')
-
-
+@endif
 
 @endsection

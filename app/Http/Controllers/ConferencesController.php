@@ -65,7 +65,7 @@ class ConferencesController extends Controller
             $file_name = time() . '-' . $file->getClientOriginalName();
 
             // upload file
-            $file->move('images', $file_name);
+            $file->move('images/conferences', $file_name);
 
             // create photo ei / object
             $photo = Photo::create(['path'=>$file_name]);
@@ -93,11 +93,11 @@ class ConferencesController extends Controller
     {
         // get current conference (in url) record
         $conference = Conference::findOrFail($id);
-
+/*dd($conference);*/
         // go to the conference related plays table, & get all plays with conference id matching $id in get request.
-        $conference_plays = $conference->plays()->where('conference_id',$id)->get();
+        //$conference_plays = $conference->plays()->where('conference_id',$id)->get();
 
-        return view('admin.conferences.show', compact('conference','conference_plays'));
+        return view('admin.conferences.show', compact('conference'));
     }
 
     /**
@@ -139,7 +139,7 @@ class ConferencesController extends Controller
             $file_name = time() . '-' . $file->getClientOriginalName();
 
             // move file in request to images folder,
-            $file->move('images', $file_name);
+            $file->move('images/conferences', $file_name);
 
             // create photo ei / record with path as file name,
             $photo = Photo::create([ 'path' => $file_name ]);
@@ -154,7 +154,7 @@ class ConferencesController extends Controller
         Session::flash('conference_updated', 'Success! The conference was successfully updated.');
 
         return view('admin.conferences.show', compact('conference'));
-        //return Redirect::back();
+
 
     }
 
@@ -170,7 +170,8 @@ class ConferencesController extends Controller
         $conference = Conference::findOrFail($id);
 
         // destroy related image.
-        unlink(public_path() . $conference->photo->path);
+        unlink(public_path() . '\\images\conferences\\' .  $conference->photo->path);
+
 
         // delete the ei / record
         $conference->delete();
@@ -180,6 +181,8 @@ class ConferencesController extends Controller
 
     }
 
+    /* show plays related to specific conference id in url
+    ----------------------------------------------------------------------------------------------*/
     public function show_plays($id) {
 
         // get all plays
@@ -191,7 +194,7 @@ class ConferencesController extends Controller
         // go to the conference related plays table, & get all plays with conference id matching $id in get request.
         $conference_plays = $conference->plays()->where('conference_id',$id)->get();
 
-        return view('admin.plays.show', compact('conference_plays'));
+        return view('admin.plays.show-related', compact('conference_plays','conference'));
 
     }
 }

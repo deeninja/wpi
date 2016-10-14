@@ -29,7 +29,7 @@
     @endif
 
       <div class="table-responsive">
-              <table class="table">
+              <table class="table table-striped table-responsive table-hover">
                   <thead>
                   <tr>
                       <th>Id</th>
@@ -46,7 +46,8 @@
                   @foreach($conferences as $conference)
                       <tr>
                       <td>{{$conference->id}}</td>
-                      <td><img class="img-rounded img-responsive" width="50"  src="{{$conference->photo->path ? $conference->photo->path : 'http://placehold.it/50x50'}}"></td>
+                      <td><img class="img-rounded img-responsive" width="50" src="{{'/images/conferences/'.
+                  $conference->photo->path}}"></td>
                       <td>{{$conference->year}}</td>
                       <td>{{$conference->title}}</td>
                       <td>{{str_limit($conference->excerpt,28)}}</td>

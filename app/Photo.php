@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Photo extends Model
 {
 
-    protected $image_dir = '/images/';
+   /* protected $image_dir_main = '/images/';
+    protected $image_dir_plays = '/images/plays';
 
     // accessor to get photo attribute & concatenate it's dir with it, which echos entire resource link.
-    public function getPathAttribute($photo)
+    public function getPathAttribute($photo, $dir)
     {
-        return $this->image_dir . $photo;
-    }
+        return $dir . $photo;
+    }*/
 
     // mass assign.
     protected $fillable = ['id','path'];
@@ -28,5 +29,10 @@ class Photo extends Model
     public function conference()
     {
         return $this->belongsTo('App\Conference');
+    }
+
+    public function play()
+    {
+        return $this->hasOne('App\Play');
     }
 }

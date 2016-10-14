@@ -31,7 +31,6 @@
     <div class="form-group">
         {!! Form::label('details','Details:') !!}
         {!! Form::textarea('details', null, ['class'=>'form-control','rows'=>'8','id'=>'tinymce']) !!}
-        {{--<textarea name="content" class="form-control my-editor">{!! old('content', $content) !!}</textarea>--}}
     </div>
 
     <div class="form-group">
@@ -39,5 +38,20 @@
     </div>
 
     {!! Form::close() !!}
+
+
+    @if(count($errors) > 0)
+
+        <div class="panel alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+
+                    <li>{{$error}}</li>
+
+                @endforeach
+            </ul>
+        </div>
+
+    @endif
 
 @endsection

@@ -10,14 +10,25 @@ class Play extends Model
     // mass assign
     protected $fillable = [
         'title',
+        'photo_id',
         'abstract',
-        'authors',
+        'author1',
+        'author2',
+        'author3',
+        'author4',
         'url',
     ];
 
-    // define 1:1 conference
-    public function conference()
+    // define inverse 1:1 photo
+    public function photo()
     {
-        return $this->hasOne('App\Conference');
+        return $this->belongsTo('App\Photo');
+    }
+
+    // define M:M conferences
+    public function conferences()
+    {
+        return $this->belongsToMany('App\Conference');
+
     }
 }

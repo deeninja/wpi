@@ -12,6 +12,7 @@
     <title>Admin</title>
 
     <!-- Bootstrap Core CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
     <link href="{{asset('css/all.css')}}" rel="stylesheet">
@@ -172,11 +173,11 @@
                         <ul class="nav nav-second-level">
 
                             <li>
-                                <a href="{{route('conferences.index')}}">View</a>
+                                <a href="{{route('plays.index')}}">View</a>
                             </li>
 
                             <li>
-                                <a href="{{route('conferences.create')}}">Add New</a>
+                                <a href="{{route('plays.create')}}">Add New</a>
                             </li>
 
                         </ul>
@@ -366,7 +367,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header"></h1>
-
                 @yield('content')
             </div>
             <!-- /.col-lg-12 -->
@@ -382,6 +382,7 @@
 
 <!-- jQuery -->
 <script src="{{asset('js/libs.js')}}"></script>
+
 
 
 @yield('footer')

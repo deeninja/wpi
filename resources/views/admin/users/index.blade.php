@@ -16,7 +16,7 @@
     <h1>Users</h1>
 
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-striped table-responsive table-hover">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -38,7 +38,7 @@
 
                 <tr>
                     <td>{{$user->id}}</td>
-                    <td><img class="img-rounded img-responsive" width="50" src="{{$user->photo ? $user->photo->path : 'http://placehold.it/50x50'}}"></td>
+                    <td><img class="img-rounded img-responsive" width="100" src="{{$user->photo ? '/images/' . $user->photo->path : 'http://placehold.it/50x50'}}"></td>
                     <td>{{$user->first_name}}</td>
                     <td>{{$user->last_name}}</td>
                     <td>{{$user->email}}</td>

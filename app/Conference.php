@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Conference extends Model
 {
-
     // mass assign
     protected $fillable = [
         'id',
@@ -22,10 +21,11 @@ class Conference extends Model
         return $this->belongsTo('App\Photo');
     }
 
-    // define 0:M plays relationship
+    // define M:M plays relationship
     public function plays()
     {
-        return $this->hasMany('App\Play');
+        return $this->belongsToMany('App\Play');
+        //return $this->belongsToMany('App\Play')->withPivot('conference_id','play_id');
     }
 
 }
