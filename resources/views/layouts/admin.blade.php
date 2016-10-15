@@ -12,7 +12,6 @@
     <title>Admin</title>
 
     <!-- Bootstrap Core CSS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
     <link href="{{asset('css/all.css')}}" rel="stylesheet">
@@ -379,10 +378,9 @@
 
 </div>
 <!-- /#wrapper -->
-
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--}}
 <!-- jQuery -->
 <script src="{{asset('js/libs.js')}}"></script>
-
 
 
 @yield('footer')
