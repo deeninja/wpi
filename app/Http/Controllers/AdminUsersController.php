@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\Photo;
+use App\Country;
 
 use App\Http\Requests;
 use App\Http\Requests\UsersRequest;
@@ -49,11 +50,14 @@ class AdminUsersController extends Controller
         // get all the name, id attributes from the roles class / table
         $roles = Role::all()->pluck('name', 'id');
 
+        // get all the name, id attributes from the countries class / table
+        $countries = Country::pluck('name','id');
+
         // get the status & id columns
         $status = User::pluck('status', 'id')->all();
 
 
-        return view('admin.users.create', compact('roles', 'status'));
+        return view('admin.users.create', compact('roles', 'status','countries'));
     }
 
     /**
@@ -83,7 +87,7 @@ class AdminUsersController extends Controller
             $name = time() . '-' . $file->getClientOriginalName();
 
             // move the file $name to images folder
-            $file->move('images', $name);
+            $file->move('images/users', $name);
 
             // create new photo object with file name & saves it to the db
             $photo = Photo::create([ 'path' => $name ]);
@@ -111,7 +115,9 @@ class AdminUsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -162,7 +168,7 @@ class AdminUsersController extends Controller
             $name = time() . '-' . $file->getClientOriginalName();
 
             // move uploaded file to images dir
-            $file->move('images', $name);
+            $file->move('images/users', $name);
 
             // create photo record/object with path name
             $photo = Photo::create(['path'=>$name]);
@@ -206,7 +212,7 @@ class AdminUsersController extends Controller
         $user = User::findOrFail($id);
 
         // destroy related image.
-        unlink(public_path() . $user->photo->path);
+        unlink(public_path() . '\\images\\users\\' . $user->photo->path);
 
         // delete user record.
         $user->delete();

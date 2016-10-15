@@ -6,47 +6,83 @@
 
     {!! Form::open(['method' => 'POST', 'action'=> 'AdminUsersController@store', 'files'=>'true']) !!}
 
-    <div class="form-group">
-        {!! Form::label('photo_id', 'Photo:') !!}
-        {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
+    <div class="col-md-6">
+
+        <div class="form-group">
+            {!! Form::label('first_name', 'First Name:') !!}
+            {!! Form::text('first_name', null, ['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('last_name', 'Last Name:') !!}
+            {!! Form::text('last_name', null, ['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('email', 'Email:') !!}
+            {!! Form::text('email', null, ['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('password', 'Password:') !!}
+            {!! Form::password('password', ['class'=>'form-control']) !!}
+        </div>
+
+
+        <div class="form-group">
+            {!! Form::label('plays','Plays:') !!}
+            {!! Form::textarea('plays', null, ['class'=>'form-control','rows'=>'6']) !!}
+        </div>
+
     </div>
 
-    <div class="form-group">
-        {!! Form::label('first_name', 'First Name:') !!}
-        {!! Form::text('first_name', null, ['class'=>'form-control']) !!}
-    </div>
+    <!-- { right column  -->
+    <div class="col-md-6">
 
-    <div class="form-group">
-        {!! Form::label('last_name', 'Last Name:') !!}
-        {!! Form::text('last_name', null, ['class'=>'form-control']) !!}
-    </div>
+        <div class="form-group">
+            {!! Form::label('role_id', 'Role') !!}
+            {!! Form::select('role_id', $roles, null, ['placeholder'=>'Choose a role', 'class'=>'form-control']) !!}
+        </div>
 
-    <div class="form-group">
-        {!! Form::label('email', 'Email:') !!}
-        {!! Form::text('email', null, ['class'=>'form-control']) !!}
-    </div>
+        <div class="form-group">
+            {!! Form::label('country_id', 'Country:') !!}
+            {!! Form::select('country_id', $countries, null, ['placeholder'=>'Choose a country', 'class'=>'form-control'])
+             !!}
+        </div>
 
-    <div class="form-group">
-        {!! Form::label('password', 'Password:') !!}
-        {!! Form::password('password', ['class'=>'form-control']) !!}
-    </div>
 
-    <div class="form-group">
-        {!! Form::label('role_id', 'Role') !!}
-        {!! Form::select('role_id', $roles, null, ['placeholder'=>'Choose a role', 'class'=>'form-control']) !!}
-    </div>
+        <div class="form-group">
+            {!! Form::label('website', 'Website:') !!}
+            {!! Form::text('website', null, ['class'=>'form-control']) !!}
+        </div>
 
+        <div class="form-group">
+            {!! Form::label('status', 'Status:') !!}
+            {!! Form::select('status', ['Active'=>'Active','Inactive'=>'Inactive'], null, ['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('photo_id', 'Photo:') !!}
+            {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
+        </div>
+
+    </div>
+    <!-- right column } -->
+
+    <div class="col-md-12">
     <div class="form-group">
-        {!! Form::label('status', 'Status:') !!}
-        {!! Form::select('status', ['Active'=>'Active','Inactive'=>'Inactive'], null, ['class'=>'form-control']) !!}
+        {!! Form::label('bio','Biography:') !!}
+        {!! Form::textarea('bio', null, ['class'=>'form-control','rows'=>'8']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::submit('Create User', ['class'=>'btn btn-primary']) !!}
     </div>
 
+    </div>
     {!! Form::close() !!}
     {{--/form --}}
+
 
     {{-- including the errors logic to display validation errors --}}
     @include('includes.form_error')

@@ -10,28 +10,32 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
-     * the attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'role_id',
-        'photo_id',
-        'status',
-        'password',
-        'phone'
-    ];
-
-    /**
      * the attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
     'password', 'remember_token',
+    ];
+
+    /**
+     * the attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+    'photo_id',
+    'role_id',
+    'country_id',
+    'first_name',
+    'last_name',
+    'email',
+    'bio',
+    'plays',
+    'website',
+    'status',
+    'password',
+    'phone'
     ];
 
     public function role()
@@ -44,6 +48,17 @@ class User extends Authenticatable
         return $this->belongsTo('App\Photo');
     }
 
+    // define 0:m posts
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
+
+    // country 1:1
+    public function country() {
+        return $this->hasOne('App\Country');
+    }
+
     public function isAdmin()
     {
         if($this->role->name === "Administrator" && $this->status == "Active"){
@@ -54,6 +69,6 @@ class User extends Authenticatable
 
         return false;
 
-
     }
+
 }

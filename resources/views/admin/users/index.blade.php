@@ -38,7 +38,7 @@
 
                 <tr>
                     <td>{{$user->id}}</td>
-                    <td><img class="img-rounded img-responsive" width="100" src="{{$user->photo ? '/images/' . $user->photo->path : 'http://placehold.it/50x50'}}"></td>
+                    <td><img class="img-rounded img-responsive" width="100" src="{{$user->photo ? '/images/users/' . $user->photo->path : 'http://placehold.it/50x50'}}"></td>
                     <td>{{$user->first_name}}</td>
                     <td>{{$user->last_name}}</td>
                     <td>{{$user->email}}</td>
@@ -47,6 +47,7 @@
                     <td>{{$user->created_at->diffForHumans()}}</td>
                     <td>{{$user->updated_at->diffForHumans()}}</td>
                     <td><a href="{{route('users.edit', $user->id)}}" class="btn btn-primary">Edit</a></td>
+                    <td><a href="{{route('users.show', $user->id)}}" class="btn btn-primary">View</a></td>
                 </tr>
 
                     @endforeach
