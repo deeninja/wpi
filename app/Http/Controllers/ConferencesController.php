@@ -129,11 +129,12 @@ class ConferencesController extends Controller
 
         $form_data = $request->all();
 
-
         // save form data
 
         // if there is a photo uploaded, extract, create photo, save new photo id to request data id for linking.
         if( $file = $request->file('photo_id') ) {
+
+            unlink(public_path() . $conference->photo->file);
 
             // extract & create timestamped file name,
             $file_name = time() . '-' . $file->getClientOriginalName();
@@ -151,7 +152,7 @@ class ConferencesController extends Controller
 
         $conference->update($form_data);
 
-        Session::flash('conference_updated', 'Success! The conference was successfully updated.');
+        Session::flash('conference_updated', 'The conference was successfully updated.');
 
         return view('admin.conferences.show', compact('conference'));
 

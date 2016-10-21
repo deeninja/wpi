@@ -1,9 +1,4 @@
-{{--
-@extends('layouts.admin)
-
-@section('content')
-
-    @extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -22,18 +17,23 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('category_id', 'Conference:') !!}
-        {!! Form::select('category_id', $conferences, null, ['placeholder'=>'Choose Conference', 'class'=>'form-control'])
+        {!! Form::label('category_id', 'Category:') !!}
+        {!! Form::select('category_id', $categories, null, ['placeholder'=>'Choose Category', 'class'=>'form-control'])
          !!}
     </div>
 
     <div class="form-group">
-        {!! Form::label('abstract','Abstract:') !!}
-        {!! Form::textarea('abstract', null, ['class'=>'form-control','rows'=>'8','id'=>'tinymce']) !!}
+        {!! Form::label('date', 'Date') !!}
+       {!! Form::date('date', \Carbon\Carbon::now()) !!}
     </div>
 
     <div class="form-group">
-        {!! Form::submit('Add Play',['class'=>'btn btn-primary']) !!}
+        {!! Form::label('body','Body:') !!}
+        {!! Form::textarea('body', null, ['class'=>'form-control','rows'=>'8','id'=>'tinymce']) !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::submit('Add Post',['class'=>'btn btn-primary']) !!}
     </div>
 
     {!! Form::close() !!}
@@ -50,6 +50,3 @@
     @endif
 
 @endsection
-
-@endsection
---}}

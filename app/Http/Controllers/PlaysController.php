@@ -149,8 +149,6 @@ class PlaysController extends Controller
 
         $play->conferences()->sync(['conference_id'=>$form_data['conference_id']]);
 
-        //User::find(1)->roles()->updateExistingPivot($roleId, $attributes);
-
         $plays = Play::all();
 
         // create notification

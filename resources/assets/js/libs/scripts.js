@@ -1,6 +1,24 @@
-/**
- * Created by edwin on 11/7/15.
- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $(document).ready(function(){
 
@@ -63,14 +81,6 @@ $(document).ready(function(){
 
 
     $('[data-toggle="tooltip"]').tooltip();
-
-    //$('button').click(function(e) {
-    //    e.preventDefault();
-    //    alert("This is a demo.\n :-)");
-    //});
-
-
-
 
 
 

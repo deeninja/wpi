@@ -10,7 +10,7 @@ class Country extends Model
     protected $fillable = ['id','code','name'];
 
     // define 0:m user
-    public function user()
+    public function users()
     {
         return $this->belongsToMany('App\Country');
     }

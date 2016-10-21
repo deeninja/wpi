@@ -9,7 +9,7 @@ class Post extends Model
     // mass assign
     protected $fillable = [
         'user_id',
-        'photo_ud',
+        'photo_id',
         'title',
         'date',
         'body',
@@ -20,5 +20,14 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function categories() {
+        return $this->hasMany('App\Category');
+    }
+
+    public function photo()
+    {
+        return $this->belongsTo('App\Photo');
     }
 }

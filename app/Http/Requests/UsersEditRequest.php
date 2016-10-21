@@ -28,7 +28,9 @@ class UsersEditRequest extends FormRequest
         return [
         'first_name' => 'required|alpha',
         'last_name' => 'required|alpha',
-        /*'email' => 'unique:users|email',*/
+        'password' => 'min:5|confirmed',
+        'country_id' => 'required',
+        'password_confirmation' => 'min:5',
         'role_id' => 'required',
         'status' => 'required',
         ];

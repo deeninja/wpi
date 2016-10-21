@@ -134,7 +134,10 @@ class AdminUsersController extends Controller
         // get all the name & id attributes from the roles entity
         $roles = Role::pluck('name', 'id')->all();
 
-        return view('admin.users.edit', compact('user','roles'));
+        // get all the name, id attributes from the countries class / table
+        $countries = Country::pluck('name','id');
+
+        return view('admin.users.edit', compact('user','roles','countries'));
     }
 
     /**
@@ -181,6 +184,8 @@ class AdminUsersController extends Controller
         // encrypt password for db
         $form_data['password'] = bcrypt($request->password);
 
+
+
         // update user with form data.
         $user->update($form_data);
 
@@ -212,13 +217,13 @@ class AdminUsersController extends Controller
         $user = User::findOrFail($id);
 
         // destroy related image.
-        unlink(public_path() . '\\images\\users\\' . $user->photo->path);
+        unlink(public_path() . '\\images\users\\' .  $user->photo->path);
 
         // delete user record.
         $user->delete();
 
         // create flash deleted notif
-        Session::flash('deleted_user', 'The user has been deleted.');
+        Session::flash('deleted_user', 'User deleted successfully.');
 
         return redirect('admin/users');
     }

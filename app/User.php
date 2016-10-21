@@ -43,7 +43,7 @@ class User extends Authenticatable
         return $this->belongsTo('App\Role');
     }
 
-    // defining user 0:1 photo ( WHY BELONGSTO NOT HAS ONE ) ??!
+    // defining user 0:1 photo ( WHY BELONGS TO NOT HAS ONE ) ??!
     public function photo() {
         return $this->belongsTo('App\Photo');
     }
@@ -56,7 +56,7 @@ class User extends Authenticatable
 
     // country 1:1
     public function country() {
-        return $this->hasOne('App\Country');
+        return $this->belongsTo('App\Country');
     }
 
     public function isAdmin()

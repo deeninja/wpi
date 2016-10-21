@@ -28,4 +28,8 @@ class Conference extends Model
         //return $this->belongsToMany('App\Play')->withPivot('conference_id','play_id');
     }
 
+    public function gallery() {
+        return $this->hasOne('App\Gallery');
+    }
+
 }

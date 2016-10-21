@@ -25,10 +25,11 @@ class RegisterRequest extends FormRequest
     {
         return [
             //
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'email'=>'required',
-            'password'=>'required',
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'email' => 'required',
+        'password' => 'required|min:5|confirmed',
+        'password_confirmation' => 'required|min:5'
 
         ];
     }

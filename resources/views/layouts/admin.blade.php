@@ -11,10 +11,18 @@
 
     <title>Admin</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <!-- dropzone styles -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css" rel="stylesheet">
 
+    <!-- bootstrap core CSS -->
+    <link href="{{asset('css/libs.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <link href="{{asset('css/all.css')}}" rel="stylesheet">
+    <link href="../../../public/css/custom.css" rel="stylesheet">
+
+
+
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lightbox.css')}}">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -166,6 +174,25 @@
                     {{-- /.conferences --}}
 
 
+                    {{-- gallery --}}
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Gallery<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('galleries.index')}}">View</a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('galleries.create')}}">Add new</a>
+                            </li>
+
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    {{-- /.gallery --}}
+
+
+
                     {{-- plays --}}
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>Plays<span class="fa arrow"></span></a>
@@ -190,11 +217,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/posts">All Posts</a>
+                                <a href="{{route('posts.index')}}">All Posts</a>
                             </li>
 
                             <li>
-                                <a href="/posts/create">Create Post</a>
+                                <a href="{{route('posts.create')}}">Create Post</a>
                             </li>
 
                         </ul>
@@ -365,7 +392,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"></h1>
                 @yield('content')
             </div>
             <!-- /.col-lg-12 -->
@@ -376,12 +402,62 @@
 </div>
 <!-- /#page-wrapper -->
 
-</div>
 <!-- /#wrapper -->
-{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--}}
+
 <!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="{{asset('vendor/lightbox.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/libs.js')}}"></script>
 
+<!-- dropzone -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+<script>
+
+    Dropzone.options.addImages = {
+        maxFilesize: 2,
+        acceptedFiles: 'image/*',
+        success: function (file, response) {
+            if (file.status == 'success') {
+                handleDropzoneFileUpload.handleSuccess(file);
+            } else {
+                handleDropzoneFileUpload.handleError(response);
+            }
+        }
+    };
+
+            //Dropzone adds uploaded image to page without reload
+            Dropzone.options.addImages = {
+                maxFilesize: 2,
+                acceptedFiles: 'image/*',
+                success: function (file, response) {
+                    if (file.status == 'success') {
+                        handleDropzoneFileUpload.handleSuccess(file);
+                    } else {
+                        handleDropzoneFileUpload.handleError(response);
+                    }
+                }
+            };
+
+    var handleDropzoneFileUpload = {
+        handleError: function (response) {
+            console.log(response);
+        },
+        handleSuccess: function (file) {
+            var imageList = $('#gallery-images');
+
+            $(imageList).append('<div class="col-md-3 inner"><img class="img-thumbnail" src="/gallery/images/' + file.name +
+                    '"></div>');
+        }
+    };
+
+    $('.deleteGroup').on('submit', function (e) {
+        if (!confirm('Do you want to delete this item?')) {
+            e.preventDefault();
+        }
+    });
+
+
+</script>
 
 @yield('footer')
 
@@ -426,5 +502,4 @@
 --}}
 
 </body>
-
 </html>

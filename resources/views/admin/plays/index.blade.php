@@ -4,13 +4,15 @@
 
     <h1>View All Plays</h1>
     @if(Session::has('play_updated'))
-        <div class="alert-success panel panel-green">
-            <h4 class="text-success"><i>{{session('play_updated')}}</i></h4>
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+            <h4>{{session('play_updated')}}</h4>
         </div>
     @endif
     @if(Session::has('play_deleted'))
-        <div class="alert-danger panel panel-red">
-            <h4 class="text-success"><i>{{session('play_deleted')}}</i></h4>
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+            <h4>{{session('play_deleted')}}</h4>
         </div>
     @endif
     <div class="table-responsive">
@@ -33,23 +35,26 @@
             @foreach($plays as $play)
                 <tr>
                     <td>{{$play->id}}</td>
-                    <td><img class="img-rounded img-responsive" width='100'
+                    <td>
+                        <img class="img-rounded img-responsive" width='100'
                              src="{{$play->photo ? '/images/plays/' . $play->photo->path : 'http://placehold.it/50x50'}}">
                     </td>
 
                     <td>
                         <ul>
                             @if(count($play->conferences) > 0)
-                            @foreach($play->conferences as $conference)
-                                <li class="list-unstyled">
-                                    <a class="pull-left" href="{{route('conferences.show', $conference->title)}}">{{$conference->title}}</a>
-                                </li>
-                            @endforeach
+                                @foreach($play->conferences as $conference)
+                                    <li class="list-unstyled">
+                                        <a class="pull-left"
+                                           href="{{route('conferences.show', $conference->title)}}">{{$conference->title}}</a>
+                                    </li>
+                                @endforeach
                             @else
                                 @foreach($play->conferences as $conference)
-                                <a class="pull-left" href="{{route('conferences.show', $conference->title)}}">{{$conference->title}}</a>
+                                    <a class="pull-left"
+                                       href="{{route('conferences.show', $conference->title)}}">{{$conference->title}}</a>
                                 @endforeach
-                                @endif
+                            @endif
                         </ul>
                     </td>
 

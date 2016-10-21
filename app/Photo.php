@@ -35,4 +35,15 @@ class Photo extends Model
     {
         return $this->hasOne('App\Play');
     }
+
+    public function post()
+    {
+        return $this->belongsTo('App\Post');
+    }
+
+    public function gallery()
+    {
+        return $this->belongsToMany('App\Gallery');
+    }
+
 }
