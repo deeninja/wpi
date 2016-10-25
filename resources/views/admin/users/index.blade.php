@@ -15,7 +15,7 @@
     @if(Session::has('updated_message'))
         <div class="alert alert-success fade in">
             <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
-            <h4>{{session('updated_message')}}></h4>
+            <h4>{{session('updated_message')}}</h4>
         </div>
     @endif
     <!-- /.notifications -->

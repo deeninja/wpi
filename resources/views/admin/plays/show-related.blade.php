@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1><strong>{{$conference->title}}</strong> | Plays</h1>
+    <h1>{{$conference->title}} | <small>Plays</small></h1>
 
     <div class="table-responsive">
         <table class="table table-hover table-responsive table-striped">
@@ -32,7 +32,7 @@
         </table>
         <a href="{{URL::previous() }}" class="btn btn-primary">Back</a>
     </div>
-    </div>
+  
 
 
 @endsection

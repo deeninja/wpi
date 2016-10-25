@@ -61,9 +61,20 @@
                 {!! Form::text('website', null, ['class'=>'form-control']) !!}
             </div>
 
-            <div class="form-group">
-                {!! Form::label('status', 'Status:') !!}
-                {!! Form::select('status', ['Active'=>'Active','Inactive'=>'Inactive'], null, ['class'=>'form-control']) !!}
+            <!-- If the user is Active (value in db), present checked checkbox with deactivate option, if user Inactive,
+            present unchecked checkbox with option to activate -->
+            <div class="togglebutton">
+
+                @if($user->status == 'Active')
+                    <label>
+                        <input id="checkInput" name="status" type="checkbox" checked>
+                    </label>
+                @elseif($user->status == 'Inactive')
+                    <label>
+                        <input id="checkInput" name="status" type="checkbox">
+                    </label>
+                @endif
+                    <label id="checkText"></label>
             </div>
 
             <div class="form-group">
@@ -99,5 +110,37 @@
         {{-- including the errors logic to display validation errors --}}
         @include('includes.form_error')
     </div>
+@endsection
 
-@stop
+@section('footer')
+    <script>
+
+        document.getElementById('checkInput').addEventListener('click', function() {
+
+            var checkText = document.getElementById('checkText'),
+                    checkInput = document.getElementsByName('status');
+
+            // check if checked
+            /*   function isChecked() {
+             if ( checkInput.checked == true ) {
+             return true;
+             } else {
+             return false;
+             }
+             }*/
+
+
+            if (checkText.innerText === "Activate") {
+
+                document.getElementById('checkText').innerText = "Deactivate";
+
+            } else {
+                document.getElementById('checkText').innerText = "Activate";
+
+            }
+
+        });
+
+
+    </script>
+@endsection

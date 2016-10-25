@@ -32,7 +32,6 @@ class UsersEditRequest extends FormRequest
         'country_id' => 'required',
         'password_confirmation' => 'min:5',
         'role_id' => 'required',
-        'status' => 'required',
         ];
     }
 

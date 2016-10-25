@@ -17,8 +17,9 @@
     <!-- bootstrap core CSS -->
     <link href="{{asset('css/libs.css')}}" rel="stylesheet">
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
-    <link href="{{asset('css/all.css')}}" rel="stylesheet">
-    <link href="../../../public/css/custom.css" rel="stylesheet">
+    {{--<link href="{{asset('css/all.css')}}" rel="stylesheet">--}}
+    {{--<link href="../../../public/css/custom.css" rel="stylesheet">--}}
+    {{--<link href="{{asset('css/custom.css')}}" rel="stylesheet">--}}
 
 
 
@@ -40,9 +41,20 @@
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script>
         tinymce.init({
-            selector: '#tinymce'
+            selector: '#tinymce',
+
+
         });
     </script>
+
+    <script>
+        tinymce.init({
+            selector: '#tinymce2',
+
+        });
+    </script>
+
+
 
 
 </head>
@@ -75,21 +87,24 @@
                             class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li>
+                        <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+
+                    <li>
+                        <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
-                    <li class="divider"></li>
+
                     <li>
                         <a href="{{ url('/logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                             Logout
                         </a>
-
                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
                     </li>
+
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -155,6 +170,25 @@
                         </ul>
                     </li>
                     {{-- /.users --}}
+
+
+                    {{-- about --}}
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>About Us<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="{{route('about.index')}}">View</a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('about.edit',1)}}">Edit</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    {{-- /.about --}}
+
 
                     {{-- conferences --}}
                     <li>
@@ -500,6 +534,9 @@
     tinymce.init(editor_config);
 </script>
 --}}
-
+<script>
+    //Initialise Material Theme Javascript
+    $.material.init()
+</script>
 </body>
 </html>

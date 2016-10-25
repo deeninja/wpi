@@ -147,7 +147,11 @@ class PlaysController extends Controller
 
         $play->update($form_data);
 
-        $play->conferences()->sync(['conference_id'=>$form_data['conference_id']]);
+        if($form_data['conference_id']) {
+
+            $play->conferences()->sync(['conference_id'=>$form_data['conference_id']]);
+
+        }
 
         $plays = Play::all();
 

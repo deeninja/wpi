@@ -14,8 +14,7 @@
                 <div class="col-md-3">
                     <a class="img-remove" href="{{ 'gallery/images/' . $photo->path}}" data-lightbox="roadtrip">
                         <img class="thumb img-thumbnail img-responsive img-height" src="{{
-                            '/gallery/images/' .
-                            $photo->path}}" alt="">
+                            '/gallery/images/' . $photo->path}}" alt="">
                         <a href="{{route('galleries.imageRemove',$photo->id)}}" class="btn x-remove-image">&times;</a>
                     </a>
                 </div>

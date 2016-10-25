@@ -2,12 +2,15 @@
 
 @section('content')
 
-    <div class="panel">
+    <h1>Edit Play | <small>{{$play->title}}</small></h1>
+
+    <div class="panel panel-body">
         <h3>Cover Photo:</h3>
         <img width="250" class="img-responsive" src="{{$play->photo->path ? '/images/plays/' . $play->photo->path :
         ''}}">
     </div>
 
+<div class="panel panel-body">
     {!! Form::model($play,['method'=>'PATCH','action'=>['PlaysController@update',$play->id], 'files'=>'true']) !!}
 
     <div class="form-group">
@@ -71,5 +74,5 @@
         </div>
 
     @endif()
-
+</div>
 @endsection

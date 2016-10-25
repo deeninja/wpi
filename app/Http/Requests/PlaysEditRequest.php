@@ -29,7 +29,8 @@ class PlaysEditRequest extends FormRequest
             //
             'title'=>'required',
             'author1'=>'required',
-            'abstract'=>'required'
+            'abstract'=>'required',
+            'conference_id'
         ];
     }
 

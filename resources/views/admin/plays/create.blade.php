@@ -3,7 +3,7 @@
 @section('content')
 
     <h1>Add Play</h1>
-
+<div class="panel panel-body">
     {!! Form::open(['method'=>'POST','action'=>'PlaysController@store','files'=>'true']) !!}
 
     <div class="form-group">
@@ -68,5 +68,5 @@
         </div>
 
     @endif
-
+</div>
 @endsection

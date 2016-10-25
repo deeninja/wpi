@@ -93,9 +93,6 @@ class ConferencesController extends Controller
     {
         // get current conference (in url) record
         $conference = Conference::findOrFail($id);
-/*dd($conference);*/
-        // go to the conference related plays table, & get all plays with conference id matching $id in get request.
-        //$conference_plays = $conference->plays()->where('conference_id',$id)->get();
 
         return view('admin.conferences.show', compact('conference'));
     }

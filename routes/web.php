@@ -99,7 +99,13 @@ Route::group([ 'middleware' => 'admin' ], function() {
     // remove individual images
     Route::get('admin/gallery/{id}/imageRemove',['as'=>'galleries.imageRemove', 'uses'=>'GalleriesController@imageRemove']);
 
+
+    /* about
+    ----------------------------------------------------------------------------------------------*/
+    Route::resource('admin/about', 'AdminAboutSection');
+
 });
+
 
 /* constants
 ----------------------------------------------------------------------------------------------*/
@@ -121,3 +127,26 @@ define('IMAGE_USERS', public_path() . 'IMAGE_DIR' . '\\users\\');
 
 // gallery directory
 define('GALLERY_IMAGE_DIR', public_path() . '\\gallery\images\\');
+
+
+
+/*----------------------------------------------------------------------------------------------
+|
+| front-end
+|
+----------------------------------------------------------------------------------------------*/
+
+// index
+Route::get('/', 'PagesController@index');
+
+//conferences
+Route::get('/conferences', 'PagesController@conferences');
+
+// show individual conference
+Route::get('/conference/{id}', ['as' => 'conference.show', 'uses' => 'PagesController@show_conference'] );
+
+// show conferences related plays
+Route::get('/conference/{id}/play', ['as' => 'conference.plays.view', 'uses'=> 'PagesController@show_conference_plays']);
+
+// show individual play
+Route::get('/conference/play/{id}', ['as'=> 'conference.play', 'uses' => 'PagesController@show_related_play']);

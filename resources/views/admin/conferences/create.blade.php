@@ -28,14 +28,17 @@
         {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
     </div>
 
-    <div class="form-group">
-        {!! Form::label('details','Details:') !!}
-        {!! Form::textarea('details', null, ['class'=>'form-control','rows'=>'8','id'=>'tinymce']) !!}
+
+    <div class="row">
+            <div class="form-group col-md-8">
+                {!! Form::label('details','Details:') !!}
+                {!! Form::textarea('details', null, ['class'=>'form-control','rows'=>'8','id'=>'tinymce','cols'=>'10',
+                'rows'=>'10']) !!}
+            </div>
     </div>
 
-    <div class="form-group">
-        {!! Form::submit('Add Conference', ['class'=>'btn btn-primary'])!!}
-    </div>
+
+    {!! Form::submit('Add Conference', ['class'=>'btn btn-primary'])!!}
 
     {!! Form::close() !!}
 

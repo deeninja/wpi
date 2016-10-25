@@ -27,22 +27,19 @@
     <img width="600" src="{{$conference->photo->path ? '/images/conferences/' . $conference->photo->path : 'http://placehold
     .it/50x50'}}">
     <h2>Excerpt: {{$conference->excerpt}}</h2>
-    <div>
+    <div clas="col-md-12">
         <h2>Details:</h2>
         {{-- this syntax doesn't escape html tags, which tinymce stores data as, so we usethis to retain the html structure--}}
         {!! $conference->details !!}
+        </div>
     </div>
     <a href="{{route('conferences.edit', $conference->id)}}" class="pull-left btn btn-success">Edit</a>
 
-
+    <!-- delete button -->
     {!! Form::open(['method'=>'DELETE','action'=>['ConferencesController@destroy', $conference->id]]) !!}
-
-
     <div class="form-group">
         {!! Form::submit('Delete Conference', ['class'=>'pull-right btn btn-danger'])!!}
-
     </div>
-
     {!! Form::close() !!}
 
 @endsection

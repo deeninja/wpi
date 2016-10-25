@@ -181,6 +181,19 @@ class AdminUsersController extends Controller
 
         }
 
+        // if checkbox value exists/checked, make form data "Active", else if it doesn't exist/not checked -> "Inactive".
+        if (isset($form_data['status'])) {
+
+            $form_data['status'] = "Active";
+
+        } else {
+
+            $form_data['status'] = "Inactive";
+
+        }
+
+
+
         // encrypt password for db
         $form_data['password'] = bcrypt($request->password);
 
@@ -188,16 +201,6 @@ class AdminUsersController extends Controller
 
         // update user with form data.
         $user->update($form_data);
-
-        /* **** same as ****
-
-         * $user->role_id = $form_data['role_id'];
-        $user->photo_id = $form_data['photo_id'];
-        $user->first_name = $form_data['first_name'];
-        $user->last_name = $form_data['last_name'];
-        $user->email = $form_data['email'];
-        $user->status = $form_data['status'];
-        $user->save();*/
 
         Session::flash('updated_message', 'The user has been updated.');
 

@@ -26,7 +26,7 @@
         </div>
     @endif
     <!-- /.notifications -->
-
+<div class="well-sm">
     <!-- table -->
     <div class="table-responsive">
         <table class="table table-striped table-responsive table-hover">
@@ -34,7 +34,7 @@
             <!-- table headers -->
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>#</th>
                     <th>Photo</th>
                     <th>Year</th>
                     <th>Title</th>
@@ -65,5 +65,5 @@
         </table>
     </div>
     <!-- /.table -->
-
+</div>
 @stop

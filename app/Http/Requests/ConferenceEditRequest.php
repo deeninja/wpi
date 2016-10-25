@@ -29,7 +29,8 @@ class ConferenceEditRequest extends FormRequest
             //
             'title'=>'required',
             'year'=>'required|numeric',
-            'details'=>'required'
+            'details'=>'required',
+
         ];
     }
 
