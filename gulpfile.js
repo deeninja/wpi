@@ -26,8 +26,8 @@ elixir(function(mix) {
             'libs/metisMenu.css',
             'libs/sb-admin-2.css',
             'libs/styles.css',
-            'libs/ripples.css',
              'libs/bootstrap-material-design.css',
+            'libs/ripples.css',
             'libs/custom.css',
 
         ], './public/css/libs.css')

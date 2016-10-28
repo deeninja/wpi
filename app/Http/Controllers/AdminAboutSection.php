@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
-
 use Illuminate\Http\Request;
 
 use App\AboutSection;
@@ -21,7 +19,7 @@ class AdminAboutSection extends Controller
     public function index()
     {
         $about = AboutSection::findOrFail(1);
-        return view('admin.about.index',compact('about'));
+        return view('admin.about.index', compact('about'));
     }
 
     /**
@@ -37,7 +35,7 @@ class AdminAboutSection extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -48,7 +46,7 @@ class AdminAboutSection extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -59,20 +57,20 @@ class AdminAboutSection extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $about = AboutSection::findOrFail(1);
-        return view('admin.about.edit',compact('about'));
+        return view('admin.about.edit', compact('about'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(AdminAboutUpdateRequest $request, $id)
@@ -81,11 +79,18 @@ class AdminAboutSection extends Controller
 
         $about = AboutSection::findOrFail($id);
 
-        if($file = $request->file('cover_image')){
+        if( $file = $request->file('cover_image') ) {
 
             $name = time() . '-' . $file->getClientOriginalName();
 
             $file->move('images/about', $name);
+
+            $file_path = $file->getPath();
+
+            $file_path = $name;
+
+            $form_data['cover_image'] = $file_path;
+
 
         }
 
@@ -93,15 +98,14 @@ class AdminAboutSection extends Controller
 
         Session::flash('about_updated', 'About Us Page successfully updated.');
 
-        return view('admin.about.show', compact('about'));
-
+        return view('admin.about.index', compact('about'));
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

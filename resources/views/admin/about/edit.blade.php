@@ -22,7 +22,7 @@
 
         <fieldset>
 
-            <legend>About Section 1</legend>
+            <legend><strong>About Us: Section 1</strong></legend>
 
             <div class="form-group">
                 {!! Form::label('title1','Title:') !!}
@@ -36,9 +36,12 @@
 
         </fieldset>
 
+
+        <br>
+
         <fieldset>
 
-            <legend>About Section 2</legend>
+            <legend><strong>About Us: Section 2</strong></legend>
 
             <div class="form-group">
                 {!! Form::label('title2','Title:') !!}

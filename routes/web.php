@@ -17,6 +17,7 @@ use App\Play;
 use App\Country;
 use App\Photo;
 use App\Gallery;
+use App\Comment;
 
 
 Route::get('/', function() {
@@ -104,6 +105,10 @@ Route::group([ 'middleware' => 'admin' ], function() {
     ----------------------------------------------------------------------------------------------*/
     Route::resource('admin/about', 'AdminAboutSection');
 
+
+    // comments
+    Route::resource('admin/comments','CommentsController');
+
 });
 
 
@@ -150,3 +155,36 @@ Route::get('/conference/{id}/play', ['as' => 'conference.plays.view', 'uses'=> '
 
 // show individual play
 Route::get('/conference/play/{id}', ['as'=> 'conference.play', 'uses' => 'PagesController@show_related_play']);
+
+
+// show about page
+Route::get('/about-us', 'PagesController@about');
+
+// members
+Route::get('/members','PagesController@members');
+
+Route::get('/members/{id}', [ 'as'=> 'member.profile', 'uses'=> 'PagesController@member_view']);
+
+// show blog page
+Route::get('/blog', [ 'as'=> 'blog.index', 'uses'=> 'PagesController@blog']);
+
+// show individual post
+Route::get('/post/{id}', ['as' => 'post.show', 'uses' => 'PagesController@show_post'] );
+
+// show blog category
+Route::get('/blog/category/{id}', ['as' => 'posts.by.category', 'uses' => 'PagesController@posts_by_category'] );
+
+// show contact page
+Route::get('/contact','PagesController@contact');
+
+// perform contact form processing
+Route::post('/contact', 'PagesController@post_contact');
+
+// show user profile
+Route::get('/profile', ['as' => 'user.profile', 'uses' => 'PagesController@profile'] );
+
+// show user profile
+Route::get('/profile/edit/{id}', ['as' => 'user.profile.edit', 'uses' => 'PagesController@profile_edit'] );
+
+// update user profile data
+Route::patch('/profile/update/{id}', ['as' => 'user.profile.update', 'uses' => 'PagesController@profile_update'] );

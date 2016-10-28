@@ -24,7 +24,7 @@
 
     <div class="form-group">
         {!! Form::label('date', 'Date') !!}
-        {!! Form::date('date', \Carbon\Carbon::now()) !!}
+        {!! Form::date('date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </div>
 
     <div class="form-group">
@@ -46,7 +46,7 @@
 
 
 
-    {{--@if(count($errors) > 0)
+    @if(count($errors) > 0)
         <div class="panel alert-danger">
             <ul>
                 @foreach($errors->all() as $error)
@@ -55,6 +55,6 @@
             </ul>
         </div>
 
-    @endif--}}
+    @endif
 
 @endsection

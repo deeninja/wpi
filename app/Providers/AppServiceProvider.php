@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
         //
         User::created(function ($user) {
 
-          /*  $user->role()->attach(2);*/
+
 
         });
 

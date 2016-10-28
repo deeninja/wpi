@@ -24,11 +24,9 @@ class AdminAboutUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'cover_image'=>'required',
             'title1'=>'required',
             'body1'=>'required',
-            'title2'=>'required',
-            'body2'=>'required',
+           
         ];
     }
 }

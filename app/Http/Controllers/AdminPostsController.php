@@ -69,12 +69,13 @@ class AdminPostsController extends Controller
             // assign new photo records id to form request photo property
             $form_data['photo_id'] = $photo->id;
 
-
-
         }
 
-        // create new play
+        // create new post
         $new_post = Post::create($form_data);
+
+        // assign posts category id, the category id in the select field.
+        $new_post->category_id = $form_data['category_id'];
 
         // get current user
         $user = Auth::user();
@@ -94,7 +95,7 @@ class AdminPostsController extends Controller
      */
     public function show($id)
     {
-        // get post mathcing url id
+        // get post matching url id
         $post = Post::findOrFail($id);
         return view('admin.posts.show', compact('post'));
     }
@@ -128,6 +129,11 @@ class AdminPostsController extends Controller
 
         // get record to update
         $post_record = Post::findOrFail($id);
+
+        // assign posts category id, the category id in the select field.
+        if(isset($form_data['category_id'])){
+            $post_record->category_id = $form_data['category_id'];
+        }
 
         // if file uploaded, create name, move file, create record, add record id to form data id.
         if($file = $request->file('photo_id')){

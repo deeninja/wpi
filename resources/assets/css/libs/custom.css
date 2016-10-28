@@ -46,8 +46,7 @@ small, .font_small {font-size: 0.833em;}
 
 ----------------------------------------------------------------------------------------------------------------*/
 .btn {
-    margin: 32px 0;
-    margin: 2rem 0;
+
     color: #fff;
 }
 
@@ -60,6 +59,23 @@ small, .font_small {font-size: 0.833em;}
     margin-top: 2rem;
     margin-bottom: 32px;
     margin-bottom: 2rem;
+}
+
+dt, dd {
+    padding: 8px 0;
+    padding: .5rem 0;
+}
+
+dt {
+    font-size: 2rem;
+}
+
+dt:after {
+    content: "";
+    display: block;
+    border-bottom: solid 1px #6bb7f2;
+    width: 65%;
+
 }
 
 /*-----------------------------------------------------------------------
@@ -79,7 +95,42 @@ small, .font_small {font-size: 0.833em;}
     opacity: 0.4;
     color: #fff;
     background-color: #c93141;
+}
 
+.avatar-photo {
+    width: 220px;
+    height: 220px;
+    border-radius: 5px;
+    border: solid #eeeeee 5px;
+}
+
+.avatar-photo-circle {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: solid #eeeeee 5px;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------
+
+                  * NAV *
+
+-----------------------------------------------------------------------------------------------------------------*/
+.navbar-default .sidebar {
+        margin-top: 61px;
+    }
+
+.navbar-default .navbar-brand  {
+    color: #fff !important;
+}
+
+.navbar-right {
+    margin-right: 0 !important;
+}
+
+.dropdown a {
+    color: #fff;
 }
 
 /*----------------------------------------------------------------------------------------------------------------
@@ -127,3 +178,7 @@ small, .font_small {font-size: 0.833em;}
     margin: 16px 0;
     margin: 1rem 0;
 }
+
+
+
+

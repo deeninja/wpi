@@ -39,10 +39,18 @@
                 {!! Form::textarea('plays', null, ['class'=>'form-control','rows'=>'6']) !!}
             </div>
 
+
         </div>
 
         <!-- { right column  -->
         <div class="col-md-6">
+
+            <div class="form-group">
+                {!! Form::label('profession', 'Profession:') !!}
+                {!! Form::select('profession', ['Choreographer'=>'Choreographer','Designer'=>'Designer',
+                'Director'=>'Director','Other'=>'Other','Playwright'=>'Playwright','Producer'=>'Producer'], null,
+                ['placeholder'=>'Choose a Profession', 'class'=>'form-control']) !!}
+            </div>
 
             <div class="form-group">
                 {!! Form::label('role_id', 'Role') !!}
@@ -74,7 +82,7 @@
                         <input id="checkInput" name="status" type="checkbox">
                     </label>
                 @endif
-                    <label id="checkText"></label>
+                <label id="checkText"></label>
             </div>
 
             <div class="form-group">
@@ -115,7 +123,7 @@
 @section('footer')
     <script>
 
-        document.getElementById('checkInput').addEventListener('click', function() {
+        document.getElementById('checkInput').addEventListener('click', function () {
 
             var checkText = document.getElementById('checkText'),
                     checkInput = document.getElementsByName('status');
@@ -130,7 +138,7 @@
              }*/
 
 
-            if (checkText.innerText === "Activate") {
+            if ( checkText.innerText === "Activate" ) {
 
                 document.getElementById('checkText').innerText = "Deactivate";
 

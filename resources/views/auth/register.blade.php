@@ -17,9 +17,9 @@
                                 <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
 
                                 @if ($errors->has('first_name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
-                                    </span>
+
+                                    <p class="text-danger">{{ $errors->first('first_name') }}</p>
+
                                 @endif
                             </div>
                         </div>
@@ -31,23 +31,52 @@
                                 <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
 
                                 @if ($errors->has('last_name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
-                                    </span>
+
+                                    <p class="text-danger">{{ $errors->first('last_name') }}</p>
+
                                 @endif
                             </div>
                         </div>
 
+
+                        <div class="form-group{{ $errors->has('profession"') ? ' has-error' : '' }}">
+                            <label for="profession" class="col-md-4 control-label">Primary Profession</label>
+
+                            <div class="col-md-6">
+
+                                <select class="form-control" name="profession" id="profession" required >
+                                    <option value="" disabled selected style="display: none;">Choose a Profession</option>
+                                    <option value="Playwright">Playwright</option>
+                                    <option value="Producer">Producer</option>
+                                    <option value="Designer">Designer</option>
+                                    <option value="Choreographer">Choreographer</option>
+                                    <option value="Other">Other</option>
+                                </select>
+
+
+                                @if ($errors->has('profession'))
+
+                                    <p class="text-danger">{{ $errors->first('profession') }}</p>
+
+                                @endif
+                            </div>
+                        </div>
+
+
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('emails')
+                                }}" required>
 
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+
+                                    <p class="text-danger">{{ $errors->first('email') }}</p>
+
                                 @endif
                             </div>
                         </div>
@@ -58,9 +87,9 @@
                                 <input id="phone" type="phone" class="form-control" name="phone" value="{{ old('phone') }}">
 
                                 @if ($errors->has('phone'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('phone') }}</strong>
-                                    </span>
+
+                                    <p class="text-danger">{{ $errors->first('phone') }}</p>
+
                                 @endif
                             </div>
                         </div>
@@ -72,9 +101,9 @@
                                 <input id="password" type="password" class="form-control" name="password" required>
 
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+
+                                    <p class="text-danger">{{ $errors->first('password') }}</p>
+
                                 @endif
                             </div>
                         </div>
@@ -86,9 +115,9 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
 
                                 @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
+
+                                    <p class="text-danger">{{ $errors->first('password_confirmation') }}</p>
+
                                 @endif
                             </div>
                         </div>

@@ -10,6 +10,7 @@ class Post extends Model
     protected $fillable = [
         'user_id',
         'photo_id',
+        'category_id',
         'title',
         'date',
         'body',
@@ -22,12 +23,17 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function categories() {
-        return $this->hasMany('App\Category');
+    public function category() {
+        return $this->hasOne('App\Category');
     }
 
     public function photo()
     {
         return $this->belongsTo('App\Photo');
+    }
+
+    public function comments()
+    {
+        return $this->belongsTo('App\Comment');
     }
 }

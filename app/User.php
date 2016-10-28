@@ -3,11 +3,16 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\CanResetPassword;
+
+
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
 
     /**
      * the attributes that should be hidden for arrays.
@@ -29,6 +34,7 @@ class User extends Authenticatable
     'country_id',
     'first_name',
     'last_name',
+    'profession',
     'email',
     'bio',
     'plays',
@@ -57,6 +63,11 @@ class User extends Authenticatable
     // country 1:1
     public function country() {
         return $this->belongsTo('App\Country');
+    }
+
+    // comment 1:M
+    public function comments() {
+        return $this->hasMany('App\Comment');
     }
 
     public function isAdmin()

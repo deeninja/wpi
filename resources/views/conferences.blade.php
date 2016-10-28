@@ -6,13 +6,15 @@
         <div class="panel panel-body">
 
             <h1 class="text-center">Conferences</h1>
+            <h4 class="text-center">View all of our conferences of the decades, that have proudly taken place all over the
+                world.</h4>
             <hr>
 
             <div class="well-sm">
 
                 <div class="col-12">
                     @foreach($conferences as $conference)
-                        <div class="col-md-4">
+                        <div class="col-lg-4">
 
                             <div class="table-wallpaper" data-photo="{{'/images/conferences/'.
                         $conference->photo->path}}">
@@ -34,7 +36,7 @@
                                 @if($current_year > $conference->year )
                                     <span class='label label-l label-primary'>Past</span>
                                 @elseif($current_year < $conference->year)
-                                    <span class='label label-success'>Upcoming</span>
+                                    <span class='label label-info'>Upcoming</span>
                                 @endif
                             </div>
 

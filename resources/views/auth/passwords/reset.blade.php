@@ -8,6 +8,7 @@
                 <div class="panel-heading">Reset Password</div>
 
                 <div class="panel-body">
+                    
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
                         {{ csrf_field() }}
 

@@ -8726,53 +8726,6 @@ table.dataTable thead .sorting:after {
 }
 
 
-.withripple {
-  position: relative;
-}
-.ripple-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border-radius: inherit;
-  pointer-events: none;
-}
-.ripple {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  margin-left: -10px;
-  margin-top: -10px;
-  border-radius: 100%;
-  background-color: #000;
-  background-color: rgba(0, 0, 0, 0.05);
-  -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-       -o-transform: scale(1);
-          transform: scale(1);
-  -webkit-transform-origin: 50%;
-      -ms-transform-origin: 50%;
-       -o-transform-origin: 50%;
-          transform-origin: 50%;
-  opacity: 0;
-  pointer-events: none;
-}
-.ripple.ripple-on {
-  -webkit-transition: opacity 0.15s ease-in 0s, -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
-       -o-transition: opacity 0.15s ease-in 0s, -o-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
-          transition: opacity 0.15s ease-in 0s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
-  opacity: 0.1;
-}
-.ripple.ripple-out {
-  -webkit-transition: opacity 0.1s linear 0s !important;
-       -o-transition: opacity 0.1s linear 0s !important;
-          transition: opacity 0.1s linear 0s !important;
-  opacity: 0;
-}
-/*# sourceMappingURL=ripples.css.map */
 /*
 
 To get this list of colors inject jQuery at http://www.google.com/design/spec/style/color.html#color-color-palette
@@ -8953,7 +8906,7 @@ body .container-fluid .jumbotron-danger {
   border-radius: 2px;
   position: relative;
   padding: 8px 30px;
-  margin: 10px 1px;
+  /*margin: 10px 1px;*/
   font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
@@ -11175,7 +11128,7 @@ fieldset[disabled] .navbar .btn-link:focus {
 }
 .navbar,
 .navbar.navbar-default {
-  background-color: #3F51B5;
+  background-color: #2095F4;
   color: rgba(255,255,255, 0.84);
 }
 .navbar .navbar-form .form-group input.form-control::-moz-placeholder,
@@ -11513,7 +11466,7 @@ fieldset[disabled] .navbar .btn-link:focus {
 }
 .alert,
 .alert.alert-default {
-  background-color: rgba(255,255,255, 0.84);
+  background-color: #D6D6D6;
   color: rgba(255,255,255, 0.84);
 }
 .alert a,
@@ -12251,11 +12204,59 @@ hr.on-light {
   color: #757575;
 }
 /*# sourceMappingURL=bootstrap-material-design.css.map */
+.withripple {
+  position: relative;
+}
+.ripple-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+  border-radius: 100%;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.05);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+       -o-transform: scale(1);
+          transform: scale(1);
+  -webkit-transform-origin: 50%;
+      -ms-transform-origin: 50%;
+       -o-transform-origin: 50%;
+          transform-origin: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+.ripple.ripple-on {
+  -webkit-transition: opacity 0.15s ease-in 0s, -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+       -o-transition: opacity 0.15s ease-in 0s, -o-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+          transition: opacity 0.15s ease-in 0s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+  opacity: 0.1;
+}
+.ripple.ripple-out {
+  -webkit-transition: opacity 0.1s linear 0s !important;
+       -o-transition: opacity 0.1s linear 0s !important;
+          transition: opacity 0.1s linear 0s !important;
+  opacity: 0;
+}
+/*# sourceMappingURL=ripples.css.map */
 /* ----------------------------------------------------------------------------------------------------------------
 
                  ** * CMS * **
 
 ----------------------------------------------------------------------------------------------------------------*/
+/* Blue: #2095F4 */
 /*----------------------------------------------------------------------------------------------------------------
 
                   * TYPOGRAPHY *
@@ -12298,8 +12299,7 @@ small, .font_small {font-size: 0.833em;}
 
 ----------------------------------------------------------------------------------------------------------------*/
 .btn {
-    margin: 32px 0;
-    margin: 2rem 0;
+
     color: #fff;
 }
 
@@ -12312,6 +12312,23 @@ small, .font_small {font-size: 0.833em;}
     margin-top: 2rem;
     margin-bottom: 32px;
     margin-bottom: 2rem;
+}
+
+dt, dd {
+    padding: 8px 0;
+    padding: .5rem 0;
+}
+
+dt {
+    font-size: 2rem;
+}
+
+dt:after {
+    content: "";
+    display: block;
+    border-bottom: solid 1px #6bb7f2;
+    width: 65%;
+
 }
 
 /*-----------------------------------------------------------------------
@@ -12331,7 +12348,42 @@ small, .font_small {font-size: 0.833em;}
     opacity: 0.4;
     color: #fff;
     background-color: #c93141;
+}
 
+.avatar-photo {
+    width: 220px;
+    height: 220px;
+    border-radius: 5px;
+    border: solid #eeeeee 5px;
+}
+
+.avatar-photo-circle {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: solid #eeeeee 5px;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------
+
+                  * NAV *
+
+-----------------------------------------------------------------------------------------------------------------*/
+.navbar-default .sidebar {
+        margin-top: 61px;
+    }
+
+.navbar-default .navbar-brand  {
+    color: #fff !important;
+}
+
+.navbar-right {
+    margin-right: 0 !important;
+}
+
+.dropdown a {
+    color: #fff;
 }
 
 /*----------------------------------------------------------------------------------------------------------------
@@ -12379,4 +12431,9 @@ small, .font_small {font-size: 0.833em;}
     margin: 16px 0;
     margin: 1rem 0;
 }
+
+
+
+
+
 /*# sourceMappingURL=libs.css.map */

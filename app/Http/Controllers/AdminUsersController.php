@@ -29,9 +29,9 @@ class AdminUsersController extends Controller
         $user = Auth::user();
 
         // if user is admin && active, redirect to users with user data.
-        if ($user->isAdmin()){
-        $users = User::all();
-        return view('admin.users.index', compact('users'));
+        if( $user->isAdmin() ) {
+            $users = User::all();
+            return view('admin.users.index', compact('users'));
         }
 
         // else redirect home.
@@ -51,13 +51,12 @@ class AdminUsersController extends Controller
         $roles = Role::all()->pluck('name', 'id');
 
         // get all the name, id attributes from the countries class / table
-        $countries = Country::pluck('name','id');
+        $countries = Country::pluck('name', 'id');
 
         // get the status & id columns
         $status = User::pluck('status', 'id')->all();
 
-
-        return view('admin.users.create', compact('roles', 'status','countries'));
+        return view('admin.users.create', compact('roles', 'status', 'countries'));
     }
 
     /**
@@ -69,16 +68,16 @@ class AdminUsersController extends Controller
     public function store(UsersRequest $request)
     {
         // if pw after trim is empty, extract all form data except password to $form_data
-        if(trim($request->password) == ''){
+        if( trim($request->password) == '' ) {
 
             $form_data = $request->except('password');
 
-            } else {
+        } else {
 
-                // save form data with all fields
-                $form_data = $request->all();
+            // save form data with all fields
+            $form_data = $request->all();
 
-            }
+        }
 
         // check if file exists, if so, upload photo, create photo record & save it's id to the form request data.
         if( $file = $request->file('photo_id') ) {
@@ -135,9 +134,9 @@ class AdminUsersController extends Controller
         $roles = Role::pluck('name', 'id')->all();
 
         // get all the name, id attributes from the countries class / table
-        $countries = Country::pluck('name','id');
+        $countries = Country::pluck('name', 'id');
 
-        return view('admin.users.edit', compact('user','roles','countries'));
+        return view('admin.users.edit', compact('user', 'roles', 'countries'));
     }
 
     /**
@@ -152,20 +151,23 @@ class AdminUsersController extends Controller
         // find current users record
         $user = User::findOrFail($id);
 
-        // if pw after trim is empty, extract all form data except password to $form_data
-        if(trim($request->password) == ''){
 
-            $form_data = $request->except('password');
+        // if pw field is empty, extract all form data except password to $form_data
+        if( $request->password == '' || $request->password_confirmation == '' ) {
 
-            } else {
+            $form_data = $request->except([ 'password', 'password_confirmation' ]);
 
-                // save form data with all fields
-                $form_data = $request->all();
+        } else {
 
-            }
+            $form_data = $request->all();
+            // encrypt password for db
+            $form_data['password'] = bcrypt($request->password);
+            $form_data['password_confirmation'] = bcrypt($request->password_confirmation);
+        }
+
 
         // if file uploaded, upload it, create photo tbl record & assign it to form data, then save form data in user field.
-        if($file = $request->file('photo_id')){
+        if( $file = $request->file('photo_id') ) {
 
             // create file name
             $name = time() . '-' . $file->getClientOriginalName();
@@ -174,7 +176,7 @@ class AdminUsersController extends Controller
             $file->move('images/users', $name);
 
             // create photo record/object with path name
-            $photo = Photo::create(['path'=>$name]);
+            $photo = Photo::create([ 'path' => $name ]);
 
             // assign form images input value the new photo record's id
             $form_data['photo_id'] = $photo->id;
@@ -182,7 +184,7 @@ class AdminUsersController extends Controller
         }
 
         // if checkbox value exists/checked, make form data "Active", else if it doesn't exist/not checked -> "Inactive".
-        if (isset($form_data['status'])) {
+        if( isset( $form_data['status'] ) ) {
 
             $form_data['status'] = "Active";
 
@@ -191,13 +193,6 @@ class AdminUsersController extends Controller
             $form_data['status'] = "Inactive";
 
         }
-
-
-
-        // encrypt password for db
-        $form_data['password'] = bcrypt($request->password);
-
-
 
         // update user with form data.
         $user->update($form_data);
@@ -220,7 +215,7 @@ class AdminUsersController extends Controller
         $user = User::findOrFail($id);
 
         // destroy related image.
-        unlink(public_path() . '\\images\users\\' .  $user->photo->path);
+        unlink(public_path() . '\\images\users\\' . $user->photo->path);
 
         // delete user record.
         $user->delete();

@@ -24,7 +24,7 @@
 
     <div class="form-group">
         {!! Form::label('date', 'Date') !!}
-       {!! Form::date('date', \Carbon\Carbon::now()) !!}
+       {!! Form::date('date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </div>
 
     <div class="form-group">
