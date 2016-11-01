@@ -26,6 +26,7 @@ class GalleryAddRequest extends FormRequest
         return [
             //
             'name'=>'required|min:3',
+            'cover_image'=>'required'
 
         ];
     }

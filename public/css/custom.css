@@ -192,6 +192,10 @@ body {
     margin-bottom: 2rem;
 }
 
+.alert.alert-danger {
+    background-color: #f44336;
+    color: rgba(255, 255, 255, 0.84);
+}
 /*-----------------------------------------------------------------------
 
                   * TYPOGRAPHY *
@@ -214,15 +218,6 @@ h1 {
     text-align: center;
 }
 
-/* h1 underline */
-h1:after {
-    content: "";
-    display: block;
-    border-bottom: #2ad2b1 solid 2px;
-    margin: 0 auto;
-    width: 160px;
-    width: 10rem;
-}
 
 h2 {
     font-size: 1.424em;
@@ -270,6 +265,11 @@ li {
     background: #30d27a;
     border: 2px solid #30d27a;
 }
+
+.btn-danger {
+    background: #F44336 !important;
+}
+
 
 /* hovers */
 .btn:not(.btn-raised):not(.btn-link):hover, .input-group-btn .btn:not(.btn-raised):not(.btn-link):hover, .btn:not(.btn-raised):not(.btn-link):focus, .input-group-btn .btn:not(.btn-raised):not(.btn-link):focus {
@@ -361,7 +361,7 @@ li {
 
 h2 {
     text-align: center;
-    color: #fff;
+
 }
 
 /*----------------------------------------------------------------------------------------------------------------
@@ -369,6 +369,11 @@ h2 {
                   * IMAGES *
 
 ----------------------------------------------------------------------------------------------------------------*/
+
+.logo {
+    width: 40px;
+    transform: translateY(-6px);
+}
 
 .cover-image {
     width: 100%;
@@ -404,9 +409,21 @@ h2 {
     box-shadow: 0 4px 1px -1px #26A270;
 }
 
+.img-medium {
+    width: 900px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+    z-index: 3;
+    color: #fff;
+    background-color: #26A270;
+    border-color: #26A270;
+    cursor: pointer;
+}
 /*----------------------------------------------------------------------------------------------------------------
 
-                * MOBILE PORTRAIT / 0px to 480px. *
                       **** PAGE START ****
 
 ----------------------------------------------------------------------------------------------------------------*/
@@ -433,7 +450,7 @@ section:nth-of-type(1n+2) {
 
 /*----------------------------------------------------------------------------------------------------------------
 
-                  * NAVBAR MOBILE *
+                  * NAVBAR *
 
 ----------------------------------------------------------------------------------------------------------------*/
 
@@ -441,12 +458,13 @@ section:nth-of-type(1n+2) {
     background-color: #fff;
 }
 
-/* hamburger */
-.navbar-default .navbar-toggle {
-    background: transparent;
-    border: none;
-
+.nav-non-home {
+    background-color: #2ad2b1 !important;
 }
+
+
+/* hamburger */
+
 
 .navbar-default .navbar-toggle:hover {
     background: transparent;
@@ -473,7 +491,6 @@ section:nth-of-type(1n+2) {
     border: none;
     text-transform: uppercase;
     padding: 0 3rem;
-
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -488,9 +505,16 @@ section:nth-of-type(1n+2) {
     background: #2ad2b1;
 }
 
+.dropdown-menu .fa {
+    color: #3e3e3e;
+    line-height: 1.6;
+}
+
+
+
 /*----------------------------------------------------------------------------------------------------------------
 
-                  * HEADER MOBILE *
+                  * HEADER *
 
 ----------------------------------------------------------------------------------------------------------------*/
 .header-main-desktop {
@@ -506,6 +530,7 @@ section:nth-of-type(1n+2) {
     position: absolute;
     width: 75%;
     top: 50%;
+    color: #fff;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -513,6 +538,17 @@ section:nth-of-type(1n+2) {
 .mission-section {
     padding: 10px 40px;
 
+}
+
+
+
+.mission-section h1:after {
+    content: "";
+    display: block;
+    border-bottom: #2ad2b1 solid 2px;
+    margin: 0 auto;
+    width: 120px;
+    width: 7.5rem;
 }
 
 .mission-section h1, .mission-section h4 {
@@ -543,7 +579,19 @@ section:nth-of-type(1n+2) {
     border-radius: 5px;
     height: 320px;
     position: relative;
+}
 
+.cover-wallpaper {
+    color: #fff;
+    height: 480px;
+    position: relative;
+}
+
+.cover-wallpaper h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .bg-fit {
@@ -608,6 +656,24 @@ section:nth-of-type(1n+2) {
     transform: translate(-50%, -50%);
 }
 
+.origin-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.19)), url('../img/women-playwrights-international-buffalo.jpg') no-repeat center center fixed;
+    margin: 0 auto;
+    background-size: cover;
+    color: #fff;
+    height: 500px;
+    position: relative;
+
+}
+
+.origin-hero .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
 /* ----------------------------------------------------------------------------------------------------------------
 
                 * MEMBERS PAGE *
@@ -617,7 +683,7 @@ section:nth-of-type(1n+2) {
     height: 150px;
     border: 4px solid #26A270;
     width: 49%;
-    margin-right: 1.28rem;
+
 }
 
 .member-listing > h3,.member-listing strong {
@@ -635,7 +701,7 @@ section:nth-of-type(1n+2) {
 ----------------------------------------------------------------------------------------------------------------*/
 
 .blog-container {
-    background: linear-gradient(rgba(255, 255, 255, 0.61), rgba(255, 255, 255, 0.61)), url('../img/wpi-blog-hero.jpg') no-repeat center center fixed;
+    background: linear-gradient(rgba(255, 255, 255, 0.61), rgba(255, 255, 255, 0.61)), url('../img/international-women-playwright.jpg') no-repeat center center fixed;
     width: 100%;
 }
 
@@ -708,17 +774,25 @@ div #blog-listing {
     padding: 2rem 0 2rem 0;
 }
 
+
 /* SIDEBAR */
 
 .blog-sidebar {
     padding-left: 0;
+    padding-right: 0;
     margin-top: 17px;
+    border: #48d499 solid 2px;
 }
 
 .blog-sidebar header {
     padding: 8px 0;
     padding: .5rem 0;
+    color: #fff;
+    width: 100%;
+    background: #48d499;
 }
+
+
 
 .blog-sidebar h2 {
     margin-top: 0;
@@ -728,27 +802,29 @@ div #blog-listing {
 .blog-sidebar {
     background: #fefefe;
     border-radius: 5px;
-    height: 700px;
-
 }
 
 .blog-sidebar ul {
-    text-align: right;
-    padding: 16px 8px;
-    padding: 1rem .5rem;
     width: 100%;
-    margin: 0 auto;
 }
 
 .blog-sidebar ul li {
-    border-bottom: dashed #29b07a 1px;
+    border-bottom: dashed #29b07a 2px;
     padding: 16px 8px;
     text-align: left;
     list-style: none;
     padding: 1rem .5rem;
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
     color: #29b07a;
+}
+.blog-sidebar ul li:last-child {
+    border-bottom: none;
+}
+
+.blog-image {
+    max-width: 100%;
+    text-align: center;
 }
 
 /* AUTHOR BOX */
@@ -757,14 +833,9 @@ div #blog-listing {
     height: 240px;
     border-radius: 50%;
     border: solid #eeeeee 5px;
+
 }
 
-.author-section {
-    background: #fefefe;
-    color: #1a1a1a;
-    padding: 1rem;
-    border-radius: 5px;
-}
 
 .author-section h4 {
     margin-top: 0;
@@ -774,7 +845,7 @@ div #blog-listing {
     padding: 16px;
     padding: 1rem;
     margin-bottom: 0;
-    width: 80%;
+
 }
 
 .author-content p {
@@ -782,7 +853,8 @@ div #blog-listing {
 }
 
 .comment-box {
-    border: 2px solid #26A270;
+    padding: 2rem;
+    margin-top: 22px;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------

@@ -3,8 +3,9 @@
 @section('content')
 
     <h1>Edit User</h1>
-
+    @include('includes.form_error')
     <div class="row">
+
         <div class="col-md-6">
             {!! Form::model($user,['method'=>'PATCH','action'=>['AdminUsersController@update', $user->id],
             'files'=>'true' ])
@@ -38,7 +39,6 @@
                 {!! Form::label('plays','Plays:') !!}
                 {!! Form::textarea('plays', null, ['class'=>'form-control','rows'=>'6']) !!}
             </div>
-
 
         </div>
 
@@ -104,20 +104,22 @@
                 {!! Form::textarea('bio', null, ['class'=>'form-control','rows'=>'8']) !!}
             </div>
 
-            <div class="form-group">
-                {!! Form::submit('Update User', ['class'=>'btn btn-primary']) !!}
-            </div>
+
+                {!! Form::submit('Update User', ['class'=>'pull-left btn btn-primary']) !!}
+
             {!! Form::close() !!}
             {{--/form --}}
 
+
+            {!! Form::open(['method'=>'DELETE','action'=>['AdminUsersController@destroy', $user->id]]) !!}
+
+                {!! Form::submit('Delete User', ['class'=>'delete-confirm pull-right btn btn-danger'])!!}
+
+            {!! Form::close() !!}
         </div>
 
     </div>
 
-    <div>
-        {{-- including the errors logic to display validation errors --}}
-        @include('includes.form_error')
-    </div>
 @endsection
 
 @section('footer')
@@ -127,15 +129,6 @@
 
             var checkText = document.getElementById('checkText'),
                     checkInput = document.getElementsByName('status');
-
-            // check if checked
-            /*   function isChecked() {
-             if ( checkInput.checked == true ) {
-             return true;
-             } else {
-             return false;
-             }
-             }*/
 
 
             if ( checkText.innerText === "Activate" ) {

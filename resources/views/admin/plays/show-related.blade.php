@@ -26,6 +26,7 @@
                     <td>{{$play->abstract}}</td>
                     <td>{{$play->authors}}</td>
                     <td><a href="{{$play->url}}">{{$play->url}}</a></td>
+                    <td><a href="{{route('plays.show',$play->id) }}" class="btn btn-primary">View</a></td>
                 </tr>
             @endforeach
             </tbody>

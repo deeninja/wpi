@@ -24,12 +24,17 @@
                         <h3 class="pull-left">{{$member->role->name}}</h3>
 
                         @if(Auth::user())
-                        <a class="btn btn-primary pull-right" href="{{route('member.profile',$member->id)}}">View</a>
+                            <a class="btn btn-primary pull-right" href="{{route('member.profile',$member->id)}}">View</a>
                         @endif
                     </div>
                 @endforeach
-            </div>
 
+            </div>
+            <div class="col-lg-12">
+                <div class="text-center">
+                    {{$members->links()}}
+                </div>
+            </div>
         </div>
     </div>
 

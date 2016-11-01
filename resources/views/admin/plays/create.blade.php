@@ -3,7 +3,9 @@
 @section('content')
 
     <h1>Add Play</h1>
-<div class="panel panel-body">
+    @include('includes.form_error')
+
+    <div class="panel panel-body">
     {!! Form::open(['method'=>'POST','action'=>'PlaysController@store','files'=>'true']) !!}
 
     <div class="form-group">
@@ -58,15 +60,5 @@
 
     {!! Form::close() !!}
 
-    @if(count($errors) > 0)
-        <div class="panel alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
-        </div>
-
-    @endif
 </div>
 @endsection

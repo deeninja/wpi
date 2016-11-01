@@ -3,19 +3,19 @@
 @section('content')
 
     <h1>View Play</h1>
-
-    <h2><strong>Title:</strong>{{$play->title}}</h2>
+<div class="panel panel-body">
+    <h2>{{$play->title}}<small> (Title)</small></h2>
     <div class="panel">
         <img width="500" class="img-responsive" src="{{$play->photo->path ? '/images/plays/' . $play->photo->path : ''}}">
     </div>
     <div class="row">
         <div class="panel panel-body">
-            <h2><strong>From Conference: </strong>
+            <h2>
                 @foreach($play->conferences as $conference)
-                    {{$conference->title}}</h2>
+                    {{$conference->title}} <small>(From Conference)</small></h2>
             @endforeach()
-            <h2><strong>Authors</strong></h2>
-            <ul class="list-unstyled">
+            <h2><small>Authors</small></h2>
+            <ul>
                 <li>{{$play->author1}}</li>
                 <li>{{$play->author2}}</li>
                 <li>{{$play->author3}}</li>
@@ -34,10 +34,11 @@
             <a class="btn btn-primary pull-left" href="{{route('plays.edit',$play->id)}}">Edit</a>
             {!! Form::open(['method'=>'DELETE','action'=>['PlaysController@destroy', $play->id]]) !!}
             <div class="form-group">
-                {!! Form::submit('Delete Play', ['class'=>'pull-right btn btn-danger'])!!}
+                {!! Form::submit('Delete Play', ['class'=>'delete-confirm pull-right btn btn-danger'])!!}
             </div>
             {!! Form::close() !!}
 
         </div>
     </div>
+</div>
 @endsection

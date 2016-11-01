@@ -1,67 +1,3 @@
-<h3>Website Enquiry</h3>
-
-<div>
-
-    <h2>{{$email}}</h2>
-    @if($phone)
-        <h2>{{$phone}}</h2>
-    @endif
-
-    <p>
-        {{$body_message}}
-    </p>
-</div>
-
-
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
-@deeninja
-Watch 37
-Star 405
-Fork 212 charlesmudy/responsive-html-email-template
-Code  Issues 5  Pull requests 0  Projects 0  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathresponsive-html-email-template/index.html
-df9fb41  on Jul 5, 2015
-@charlesmudy charlesmudy Changes: 1. Problem on Outlook #8, 2. mc:edit #11
-4 contributors @charlesmudy @orliesaurus @TedGoas @dandv
-RawBlameHistory
-1351 lines (1224 sloc)  59.8 KB
-<!--
-==================== Respmail ====================
-Respmail is a response HTML email designed to work
-on all major devices and responsive for smartphones
-that support media queries.
-** NOTE **
-This template comes with a lot of standard features
-that has been thoroughly tested on major platforms
-and devices, it is extremely flexible to use and
-can be easily customized by removing any row that
-you do not need.
-it is gauranteed to work 95% without any major flaws,
-any changes or adjustments should thoroughly be
-tested and reviewed to match with the general
-structure.
-** Profile **
-Licensed under MIT (https://github.com/charlesmudy/responsive-html-email-template/blob/master/LICENSE)
-Designed by Shina Charles Memud
-Respmail v1.2 (http://charlesmudy.com/respmail/)
-** Quick modification **
-We are using width of 500 for the whole content,
-you can change it any size you want (e.g. 600).
-The fastest and safest way is to use find & replace
-Sizes: [
-		wrapper   : '500',
-		columns   : '210',
-		x-columns : [
-						left : '90',
-						right: '350'
-				]
-		}
-	-->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -94,7 +30,7 @@ Sizes: [
         table[id=bodyTable] {
             width: 100% !important;
             margin: auto;
-            max-width: 500px !important;
+            max-width: 600px !important;
             color: #7A7A7A;
             font-weight: normal;
         }
@@ -621,17 +557,13 @@ Sizes: [
                                                                 <h1 style="color:#FFFFFF;line-height:100%;font-family:Helvetica,Arial,sans-serif;font-size:35px;font-weight:normal;margin-bottom:5px;text-align:center;">
                                                                     New Message</h1>
                                                                 <h2 style="text-align:center;font-weight:normal;font-family:Helvetica,Arial,sans-serif;font-size:23px;margin-bottom:10px;color:#205478;line-height:135%;">
-                                                                    <h1>From {{$last_name ? $first_name . $last_name :
+                                                                    <h1>From {{$last_name ? $first_name . ' ' .  $last_name :
                                                                 $first_name}}</h1></h2>
                                                                 <div style="text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;">
                                                                     <h2>{{$email}}</h2>
                                                                     @if($phone)
                                                                         <h2>{{$phone}}</h2>
                                                                     @endif
-
-                                                                    <p>
-                                                                        {{$body_message}}
-                                                                    </p></div>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -726,93 +658,6 @@ Sizes: [
                                             <!-- // MODULE ROW -->
 
                                             <!-- MODULE ROW // -->
-                                            <tr>
-                                                <td align="center" valign="top">
-                                                    <!-- CENTERING TABLE // -->
-                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                                        <tr>
-                                                            <td align="center" valign="top">
-                                                                <!-- FLEXIBLE CONTAINER // -->
-                                                                <table border="0" cellpadding="0" cellspacing="0" width="500"
-                                                                       class="flexibleContainer">
-                                                                    <tr>
-                                                                        <td align="center" valign="top" width="500"
-                                                                            class="flexibleContainerCell">
-
-                                                                            <!-- CONTENT TABLE // -->
-                                                                            <table border="0" cellpadding="0" cellspacing="0"
-                                                                                   width="100%">
-                                                                                <tr>
-                                                                                    <td valign="top" class="imageContent">
-                                                                                        <img src="http://www.charlesmudy.com/respmail/respmail-full.jpg"
-                                                                                             width="500"
-                                                                                             class="flexibleImage"
-                                                                                             style="max-width:500px;width:100%;display:block;"
-                                                                                             alt="Text" title="Text"/>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </table>
-                                                                            <!-- // CONTENT TABLE -->
-
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                                <!-- // FLEXIBLE CONTAINER -->
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <!-- // CENTERING TABLE -->
-                                                </td>
-                                            </tr>
-
-
-
-                                            <!-- MODULE ROW // -->
-                                            <tr>
-                                                <td align="center" valign="top">
-                                                    <!-- CENTERING TABLE // -->
-                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                                        <tr>
-                                                            <td align="center" valign="top">
-                                                                <!-- FLEXIBLE CONTAINER // -->
-                                                                <table border="0" cellpadding="30" cellspacing="0"
-                                                                       width="500" class="flexibleContainer">
-                                                                    <tr>
-                                                                        <td style="padding-top:0;" align="center"
-                                                                            valign="top" width="500"
-                                                                            class="flexibleContainerCell">
-
-                                                                            <!-- CONTENT TABLE // -->
-                                                                            <table align="left" border="0" cellpadding="0"
-                                                                                   cellspacing="0" class="flexibleContainer">
-                                                                                <tr>
-                                                                                    <td align="left" valign="top"
-                                                                                        class="textContent">
-                                                                                        <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;margin-top:10px;color:#5F5F5F;line-height:135%;">
-                                                                                            Pellentesque habitant morbi
-                                                                                            tristique senectus netus
-                                                                                            malesuada et fames ac turpis
-                                                                                            egestas. Vestibulum tortor quam,
-                                                                                            feugiat vitae, ultricies eget,
-                                                                                            tempor sit amet, ante.
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </table>
-                                                                            <!-- // CONTENT TABLE -->
-
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                                <!-- // FLEXIBLE CONTAINER -->
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <!-- // CENTERING TABLE -->
-                                                </td>
-                                            </tr>
-                                            <!-- // MODULE ROW -->
-
 
                                             <!-- MODULE ROW // -->
                                             <tr>
@@ -901,19 +746,8 @@ Sizes: [
                                                                                     <td valign="top" bgcolor="#E1E1E1">
 
                                                                                         <div style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#828282;text-align:center;line-height:120%;">
-                                                                                            <div>Copyright &#169; 2014 <a
-                                                                                                        href="http://www.charlesmudy.com/respmail/"
-                                                                                                        target="_blank"
-                                                                                                        style="text-decoration:none;color:#828282;"><span
-                                                                                                            style="color:#828282;">Respmail</span></a>.
+                                                                                            <div>Copyright&#169;&nbsp;Women&nbsp;Playwrights&nbsp;International
                                                                                                 All&nbsp;rights&nbsp;reserved.
-                                                                                            </div>
-                                                                                            <div>If you do not want to
-                                                                                                recieve emails from us, you
-                                                                                                can <a href="#"
-                                                                                                       target="_blank"
-                                                                                                       style="text-decoration:none;color:#828282;"><span
-                                                                                                            style="color:#828282;">unsubscribe</span></a>.
                                                                                             </div>
                                                                                         </div>
 

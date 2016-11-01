@@ -22,7 +22,8 @@
                             @foreach($posts as $post)
                                 <div class="col-lg-4">
 
-                                    <div class="table-wallpaper" data-photo="{{'/images/posts/' . $post->photo->path}}">
+                                    <div class="table-wallpaper" data-photo="{{$post->photo ? '/images/posts/' .
+                                    $post->photo->path : '/img/IWP-Logo-Large.gif/' }}">
 
                                         <div class="col-10">
                                             <h2 class="con-feature-title">{{$post->title}}</h2>
@@ -51,23 +52,19 @@
                     <!-- /.posts -->
 
                     <!-- /.sidebar -->
-                    <aside class="well blog-sidebar col-md-2">
-                        <div class="panel">
-
+                    <aside class="blog-sidebar col-md-2">
                             <header>
-                                <h2 class="text-primary"><i>Categories</i></h2>
+                                <h2>Categories</h2>
                             </header>
 
                             <ul>
                                 @foreach($categories as $category)
-                                    <li><span class="fa fa-square-o"></span><a href="{{route('posts.by.category',
+                                    <li><span class="fa fa-archive"></span><a href="{{route('posts.by.category',
                                         $category->id)
                                         }}">{{$category->name}}</a>
                                     </li>
                                 @endforeach()
                             </ul>
-
-                        </div>
                     </aside>
                     <!-- /.sidebar -->
 

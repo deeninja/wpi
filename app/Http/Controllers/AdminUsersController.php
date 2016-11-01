@@ -214,9 +214,10 @@ class AdminUsersController extends Controller
         // find user.
         $user = User::findOrFail($id);
 
+        if($user->photo) {
         // destroy related image.
         unlink(public_path() . '\\images\users\\' . $user->photo->path);
-
+        }
         // delete user record.
         $user->delete();
 

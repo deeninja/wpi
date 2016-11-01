@@ -8,7 +8,7 @@
     @if(Session::has('deleted_user'))
         <div class="alert alert-danger fade in">
             <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
-            <h4>{{session('deleted_user')}}></h4>
+            <h4>{{session('deleted_user')}}</h4>
         </div>
     @endif
 
@@ -36,6 +36,8 @@
                     <th>Active</th>
                     <th>Created</th>
                     <th>Updated</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
                 </tr>
             </thead>
             <!-- table headings -->

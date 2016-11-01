@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Conference;
+use App\Play;
 use Illuminate\Http\Request;
 use App\User;
+use App\Comment;
+use App\Post;
+use App\Gallery;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -25,8 +30,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = User::findOrFail(Auth::id());
+        $comments = count(Comment::all());
+        $users = count(User::all());
+        $posts = count(Post::all());
+        $galleries = count(Gallery::all());
+        $conferences = count(Conference::all());
+        $plays = count(Play::all());
 
-        return view('home', compact('user'));
+        return view('admin.index', compact('comments','users','posts','galleries','conferences','plays'));
+    }
+
+    public function home()
+    {
+        $user = Auth::user();
+        return view('home',compact('user'));
     }
 }

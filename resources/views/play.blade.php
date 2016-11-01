@@ -4,7 +4,7 @@
 
     <div class="content-container">
 
-        <div class="col-12 col-lg-offset-1">
+        <div class="col-lg-6 col-lg-offset-3">
 
         <div class="panel panel-body">
 
@@ -19,7 +19,7 @@
                 @foreach($play->conferences as $conference)
                     {{$conference->title}}</h2>
             @endforeach()
-            <h2><strong>Authors</strong></h2>
+            <h2 class="text-left"><strong>Authors</strong></h2>
             <ul class="list-unstyled">
                 <li>{{$play->author1}}</li>
                 <li>{{$play->author2}}</li>

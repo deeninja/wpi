@@ -13,7 +13,7 @@
             </div>
 
             <dl class="list-inline">
-                <dt>#</dt>
+                <dt>ID</dt>
                 <dd>{{$user->id}}</dd>
 
                 <dt>First Name:</dt>
@@ -55,7 +55,7 @@
 
         {!! Form::open(['method'=>'DELETE','action'=>['AdminUsersController@destroy', $user->id]]) !!}
         <div class="form-group">
-            {!! Form::submit('Delete User', ['class'=>'pull-right btn btn-danger'])!!}
+            {!! Form::submit('Delete User', ['class'=>'delete-confirm pull-right btn btn-danger'])!!}
         </div>
         {!! Form::close() !!}
 

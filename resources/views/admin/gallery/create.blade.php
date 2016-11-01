@@ -7,7 +7,7 @@
     </div>
 
     <div class="col-md-12">
-        {!! Form::open(['method'=>'POST','action'=>'GalleriesController@store_gallery']) !!}
+        {!! Form::open(['method'=>'POST','action'=>'GalleriesController@store_gallery','files'=>'true']) !!}
 
         <div class="form-group">
             {!! Form::text('name', null, ['id'=>'name', 'placeholder'=>'Name of Gallery',
@@ -15,7 +15,9 @@
         </div>
 
         <div class="form-group">
-            {!! Form::select('status', ['Active'=>'Active','Inactive'=>'Inactive'], 'Active',['class'=>'form-control']) !!}
+            {!! Form::label('cover_image', 'Cover Photo:') !!}
+            {!! Form::file('cover_image', null, ['class'=>'form-control']) !!}
+            <span id="helpBlock" class="help-block">A cover photo for the gallery.</span>
         </div>
 
         <div class="form-group">

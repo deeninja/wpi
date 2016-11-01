@@ -2398,9 +2398,10 @@ fieldset[disabled] .navbar .btn-link:focus {
   font-size: 14px;
   line-height: 1.42857143;
 }
+
 .navbar,
 .navbar.navbar-default {
-  background-color: #2ad2b1;
+  background-color: transparent;
   color: rgba(255,255,255, 0.84);
 }
 .navbar .navbar-form .form-group input.form-control::-moz-placeholder,

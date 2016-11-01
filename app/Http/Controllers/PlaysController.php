@@ -11,8 +11,10 @@ use App\Conference;
 // requests
 use App\Http\Requests\PlaysAddRequest;
 use App\Http\Requests\PlaysEditRequest;
+use App\Http\Requests\PlaysLinkRequest;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+
+// facades
 use Illuminate\Support\Facades\Session;
 
 class PlaysController extends Controller
@@ -173,14 +175,50 @@ class PlaysController extends Controller
         //
         $play = Play::findOrFail($id);
 
-        // destroy related image.
-        unlink(public_path() . '\\images\plays\\' .  $play->photo->path);
+        if($play->photo) {
+            // destroy related image.
+            unlink(public_path() . '\\images\plays\\' . $play->photo->path);
+        }
 
         $play->delete();
 
         Session::flash('play_deleted', 'Play deleted successfully.');
 
         return redirect('admin/plays');
+    }
+
+
+    // display link play to conference form
+    public function link_play($id)
+    {
+        // get play matching get $id
+        $play = Play::findOrFail($id);
+
+        // get conference titles for linking
+        $conferences = Conference::pluck('title','id');
+
+        return view('admin.plays.link', compact('play','conferences','id'));
+    }
+
+    // link the play to a conference
+    public function do_link(PlaysLinkRequest $request)
+    {
+
+        // get selected conference
+        $select_conference = $request['conference_id'];
+
+        // get gallery id matching currently linking gallery
+        $play = Play::findOrFail($request['play_id']);
+
+        // assign conference id of gallery to selected conference
+        $play->conferences()->sync([$select_conference,$play->id]);
+
+
+        // create notification
+        Session::flash('play_linked', 'Play linked successfully!');
+
+        return redirect('admin/plays');
+
     }
 
 }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Http\Requests\PublicCommentRequest;
 use App\Post;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
@@ -21,13 +23,12 @@ class CommentsController extends Controller
         //
         $comments = Comment::all();
 
-     /*   foreach($comments as $comment) {
-            $author = $comment->user;
+        /*   foreach($comments as $comment) {
+               $author = $comment->user;
 
-        }*/
+           }*/
 
-
-        return view('admin.comments.index',compact('comments'));
+        return view('admin.comments.index', compact('comments'));
     }
 
     /**
@@ -43,12 +44,12 @@ class CommentsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PublicCommentRequest $request)
     {
-        //
+
         $form_data = $request->all();
 
         $comment = Comment::create($form_data);
@@ -61,13 +62,17 @@ class CommentsController extends Controller
         // get relevant post for redirecting to it's view
         $post = Post::findOrFail($form_data['post_id']);
 
+        Session::flash('comment_success', 'Comment successful.');
+
         return Redirect::route('post.show',$post->id);
+
     }
+
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -75,13 +80,13 @@ class CommentsController extends Controller
         $comment = Comment::findOrFail($id);
         $author = $comment->user;
 
-        return view('admin.comments.show',compact('comment','author'));
+        return view('admin.comments.show', compact('comment', 'author'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -92,8 +97,8 @@ class CommentsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -104,7 +109,7 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -116,6 +121,6 @@ class CommentsController extends Controller
 
         Session::flash('deleted_comment', 'The comment was successfully deleted.');
 
-        return view('admin.comments',compact('comment','comments'));
+        return view('admin.comments.index', compact('comment', 'comments'));
     }
 }

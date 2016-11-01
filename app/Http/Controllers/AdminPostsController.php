@@ -28,6 +28,9 @@ class AdminPostsController extends Controller
     {
             // get posts
             $posts = Post::all();
+
+
+
             return view('admin.posts.index', compact('posts'));
 
     }
@@ -77,10 +80,7 @@ class AdminPostsController extends Controller
         // assign posts category id, the category id in the select field.
         $new_post->category_id = $form_data['category_id'];
 
-        // get current user
-        $user = Auth::user();
-
-        $new_post->user_id = $user->id;
+        $new_post->user_id = $form_data['user_id'];
 
         $new_post->save();
 
@@ -172,9 +172,11 @@ class AdminPostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        // destroy related image.
-        unlink(public_path() . '\\images\posts\\' .  $post->photo->path);
+        if($post->photo) {
+            // destroy related image.
+            unlink(public_path() . '\\images\posts\\' . $post->photo->path);
 
+        }
         //
         Session::flash('post_deleted', "Post deleted successfull.");
 

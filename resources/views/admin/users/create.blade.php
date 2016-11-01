@@ -3,9 +3,12 @@
 @section('content')
 
     <h1>Create User</h1>
+    @include('includes.form_error')
 
+    <!-- form -->
     {!! Form::open(['method' => 'POST', 'action'=> 'AdminUsersController@store', 'files'=>'true']) !!}
 
+    <!-- left column -->
     <div class="col-md-6">
 
         <div class="form-group">
@@ -40,8 +43,9 @@
         </div>
 
     </div>
+    <!-- /.left column -->
 
-    <!-- { right column  -->
+    <!-- right column  -->
     <div class="col-md-6">
 
         <div class="form-group">
@@ -54,7 +58,6 @@
             {!! Form::select('country_id', $countries, null, ['placeholder'=>'Choose a country', 'class'=>'form-control'])
              !!}
         </div>
-
 
         <div class="form-group">
             {!! Form::label('website', 'Website:') !!}
@@ -72,25 +75,24 @@
         </div>
 
     </div>
-    <!-- right column } -->
+    <!-- /.right column -->
 
+    <!-- biography -->
     <div class="col-md-12">
-    <div class="form-group">
-        {!! Form::label('bio','Biography:') !!}
-        {!! Form::textarea('bio', null, ['class'=>'form-control','rows'=>'8']) !!}
+
+        <div class="form-group">
+            {!! Form::label('bio','Biography:') !!}
+            {!! Form::textarea('bio', null, ['class'=>'form-control','rows'=>'8']) !!}
+        </div>
+        <!-- /.biography -->
+
+        <div class="form-group">
+            {!! Form::submit('Create User', ['class'=>'btn btn-primary']) !!}
+        </div>
+
     </div>
 
-    <div class="form-group">
-        {!! Form::submit('Create User', ['class'=>'btn btn-primary']) !!}
-    </div>
-
-    </div>
     {!! Form::close() !!}
-    {{--/form --}}
+    <!-- /.form -->
 
-
-    {{-- including the errors logic to display validation errors --}}
-    @include('includes.form_error')
-
-
-@stop
+@endsection

@@ -24,7 +24,7 @@
         <div class="panel panel-body">
             {!! Form::open(['method'=>'DELETE','action'=>['CommentsController@destroy', $comment->id]]) !!}
             <div class="form-group">
-                {!! Form::submit('Delete Comment', ['class'=>'pull-right btn btn-danger'])!!}
+                {!! Form::submit('Delete Comment', ['class'=>'delete-confirm pull-right btn btn-danger'])!!}
             </div>
             {!! Form::close() !!}
 

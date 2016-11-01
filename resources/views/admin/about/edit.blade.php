@@ -5,6 +5,7 @@
     <div class="panel panel-body">
 
         <h1>About Us | Edit</h1>
+        @include('includes.form_error')
         <hr>
 
         <img class="img-responsive img-rounded" width="250"
@@ -62,16 +63,6 @@
 
         {!! Form::close() !!}
 
-        @if(count($errors) > 0)
 
-            <div class="alert-danger panel">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-
-        @endif
     </div>
 @endsection

@@ -3,13 +3,15 @@
 @section('content')
 
     <h1>Create Post</h1>
-
+    @include('includes.form_error')
     {!! Form::open(['method'=>'POST','action'=>'AdminPostsController@store','files'=>'true']) !!}
 
     <div class="form-group">
         {!! Form::label('title', 'Title') !!}
         {!! Form::text('title',null, ['class'=>'form-control']) !!}
     </div>
+
+    {!! Form::hidden('user_id', Auth::user()->id) !!}
 
     <div class="form-group">
         {!! Form::label('photo_id','Cover Photo:') !!}
@@ -33,20 +35,9 @@
     </div>
 
     <div class="form-group">
-        {!! Form::submit('Add Post',['class'=>'btn btn-primary']) !!}
+        {!! Form::submit('Publish',['class'=>'btn btn-primary']) !!}
     </div>
 
     {!! Form::close() !!}
-
-    @if(count($errors) > 0)
-        <div class="panel alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
-        </div>
-
-    @endif
 
 @endsection

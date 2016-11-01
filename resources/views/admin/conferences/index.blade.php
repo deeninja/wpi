@@ -41,6 +41,8 @@
                     <th>Excerpt</th>
                     <th>Updated</th>
                     <th>Created</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
                 </tr>
             </thead>
             <!-- /.table headers -->
@@ -58,6 +60,7 @@
                         <td>{{$conference->updated_at->diffForHumans()}}</td>
                         <td>{{$conference->created_at}}</td>
                         <td><a href="{{route('conferences.show', $conference->id)}}" class="btn btn-primary">View</a></td>
+                        <td><a href="{{route('conferences.edit', $conference->id)}}" class="btn btn-success">Edit</a></td>
                     </tr>
                 @endforeach
             </tbody>
@@ -66,4 +69,4 @@
     </div>
     <!-- /.table -->
 </div>
-@stop
+@endsection

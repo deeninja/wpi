@@ -2,6 +2,7 @@
 
 @section('content')
 
+<div class="panel panel-body">
 
     <!-- notifications -->
     @if(Session::has('about_updated'))
@@ -11,7 +12,6 @@
         </div>
     @endif
     <!-- /.notifications -->
-
 
     <div class="panel panel-body">
 
@@ -25,8 +25,9 @@
             <img width="500" class="img-responsive" src="{{$about->cover_image ? '/images/about/' . $about->cover_image :
             ''}}">
         </div>
-        <div class="panel panel-body">
-            <h2>About Us - Content Section 1</h2>
+
+
+            <h2><strong>About Us | Content Section 1</strong></h2>
             <hr>
 
 
@@ -36,9 +37,9 @@
                 <h2><strong>Content</strong></h2>
                 <p class="excerpt">{{strip_tags($about->body1)}}</p>
             </div>
-        </div>
-        <div class="panel panel-body">
-            <h2>About Us - Content Section 2</h2>
+
+
+            <h2><strong>About Us | Content Section 2</strong></h2>
             <hr>
 
 
@@ -51,8 +52,8 @@
             </div>
 
             <a class="btn btn-primary pull-left" href="{{route('about.edit',$about->id)}}">Edit</a>
-        </div>
+
     </div>
 
-
+</div>
 @endsection

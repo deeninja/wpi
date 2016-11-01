@@ -4,11 +4,15 @@
 
     <h1>Conference | Edit</h1>
 
+    <!-- form errors -->
+    @include('includes.form_error')
+
+    <!-- cover image -->
     <div class="panel col-md-12">
         <img class="img-responsive img-rounded" width="250" src="{{$conference->photo ? '/images/conferences/' . $conference->photo->path : 'http://placehold.it/50x50'}}">
     </div>
 
-    {{-- ['action'=>['ConferencesController@update', $conference->id] appends current rec ID to URL use in controller--}}
+    <!-- form -->
     {!! Form::model($conference,['method'=>'PATCH','action'=>['ConferencesController@update', $conference->id],'files'=>'true' ])
      !!}
 
@@ -43,17 +47,25 @@
     </div>
 
     {!! Form::close() !!}
+    <!-- /.form -->
 
-@if(count($errors) > 0)
+    <!-- buttons -->
+    <div class="panel panel-body">
 
-    <div class="alert-danger panel">
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>
+        <!-- view plays button -->
+        <div class="col-lg-6">
+            <a class="btn btn-success btn-block pull-left" href="{{route('plays.conference.show', $conference->id)}}" class="btn
+            btn-primary">View Plays</a>
+        </div>
+
+        <!-- add play button -->
+        <div class="col-lg-6">
+            <a class="btn btn-success btn-block pull-left" href="{{route('plays.create', $conference->id)}}" class="btn
+            btn-primary">Add Play</a>
+        </div>
+        <hr>
+
     </div>
-
-@endif
+    <!-- /.buttons -->
 
 @endsection

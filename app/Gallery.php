@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Gallery extends Model
 {
     // mass assign
-    protected $fillable = ['conference_id','name','created_by','status'];
+    protected $fillable = ['conference_id','cover_image','name','created_by','status'];
 
     public function photos()
     {

@@ -3,6 +3,7 @@
 @section('content')
 
     <h1>Edit Post</h1>
+    @include('includes.form_error')
 
     {!! Form::model($post,['method'=>'PATCH','action'=>['AdminPostsController@update',$post->id],'files'=>'true']) !!}
 
@@ -40,21 +41,8 @@
 
     {!! Form::open(['method'=>'DELETE','action'=>['AdminPostsController@destroy', $post->id]]) !!}
     <div class="form-group">
-        {!! Form::submit('Delete Post', ['class'=>'pull-right btn btn-danger'])!!}
+        {!! Form::submit('Delete Post', ['class'=>'delete-confirm pull-right btn btn-danger'])!!}
     </div>
     {!! Form::close() !!}
-
-
-
-    @if(count($errors) > 0)
-        <div class="panel alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
-        </div>
-
-    @endif
 
 @endsection

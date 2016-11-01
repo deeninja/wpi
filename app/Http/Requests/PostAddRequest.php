@@ -26,7 +26,8 @@ class PostAddRequest extends FormRequest
         return [
             'title',
             'body',
-            'category_id'
+            'category_id',
+            'photo_id'
         ];
     }
 }

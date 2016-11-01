@@ -3007,10 +3007,10 @@ fieldset[disabled] .navbar .btn-link:focus {
   -webkit-box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
           box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
 }
-.panel > .panel-heading,
+/*.panel > .panel-heading,
 .panel.panel-default > .panel-heading {
   background-color: #eeeeee;
-}
+}*/
 .panel.panel-inverse > .panel-heading {
   background-color: #3f51b5;
 }

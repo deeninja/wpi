@@ -1,14 +1,14 @@
 @if(count($errors) > 0)
 
-    <div class="alert-danger">
+    <div class="alert alert-danger">
 
-        <ul>
+
             @foreach($errors->all() as $error)
 
-                <li>{{$error}}</li>
+                <p><span class="fa fa-exclamation"></span> {{$error}}</p>
 
             @endforeach
-        </ul>
+
 
     </div>
 

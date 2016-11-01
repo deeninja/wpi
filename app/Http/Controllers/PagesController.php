@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\AboutSection;
 use App\Category;
 use App\Country;
+use App\Gallery;
+use App\Http\Requests\ContactRequest;
 use App\Photo;
 use App\Post;
 use App\Role;
@@ -32,7 +34,17 @@ class PagesController extends Controller
     ----------------------------------------------------------------------------------------------*/
     public function index()
     {
-        return view('index');
+
+        // get dynamic content
+
+        $about = AboutSection::findOrFail(1);
+
+        $conferences = Conference::all();
+        $conferences = $conferences->take(3);
+
+        $current_year = substr(Carbon::now(), 0, 4);
+
+        return view('index', compact('about','conferences','current_year'));
     }
 
 
@@ -46,7 +58,7 @@ class PagesController extends Controller
     ----------------------------------------------------------------------------------------------*/
     public function conferences()
     {
-        $conferences = Conference::all();
+        $conferences = Conference::paginate(6);
 
         $current_year = substr(Carbon::now(), 0, 4);
 
@@ -59,9 +71,11 @@ class PagesController extends Controller
     {
         $conference = Conference::findOrFail($id);
 
+        $gallery = $conference->gallery;
+
         $current_year = substr(Carbon::now(), 0, 4);
 
-        return view('conference-view', compact('conference', 'current_year'));
+        return view('conference-view', compact('conference', 'current_year','gallery'));
     }
 
     /* show individual conference's related plays listing
@@ -90,6 +104,30 @@ class PagesController extends Controller
         return view('play', compact('play'));
     }
 
+    /* show individual conference's related gallery
+    ----------------------------------------------------------------------------------------------*/
+    public function show_related_gallery($id)
+    {
+        // get play from id (in get uri from button)
+        $gallery = Gallery::findOrFail($id);
+
+        return view('gallery-view', compact('gallery'));
+    }
+
+
+    /*---------------------------------------------------------------------------------------------------------------------
+
+                                                   | plays |
+
+  ----------------------------------------------------------------------------------------------------------------------*/
+
+    /* show plays listing page
+    ----------------------------------------------------------------------------------------------*/
+    public function plays()
+    {
+        $plays = Play::paginate(6);
+        return view('plays', compact('plays'));
+    }
 
     /*---------------------------------------------------------------------------------------------------------------------
 
@@ -101,7 +139,7 @@ class PagesController extends Controller
     ----------------------------------------------------------------------------------------------*/
     public function members()
     {
-        $members = User::all();
+        $members = User::paginate(10);
         return view('members', compact('members'));
 
     }
@@ -216,14 +254,8 @@ class PagesController extends Controller
 
     /* validate & send email
        ----------------------------------------------------------------------------------------------*/
-    public function post_contact(Request $request)
+    public function post_contact(ContactRequest $request)
     {
-        // validate
-        $this->validate($request,
-        [
-        'first_name' => 'required|min:2',
-        'email' => 'required|email',
-        'message' => 'required|min:10' ]);
 
         // Mail:: takes the request and assigns it to a variable with the name of the key
         $data = array(
@@ -232,7 +264,7 @@ class PagesController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'phone' => $request->phone,
-            'body_message' => $request->message
+            'body_message' => $request->body_message
             );
 
         // email (view/email, data to put in email, what to use in header data)
@@ -243,6 +275,9 @@ class PagesController extends Controller
             $message->subject($data['subject']);
 
         });
+
+        Session::flash('contact_sent','Thank you for reaching out, we\'ll get back to you as soon as possible!');
+        return redirect('/contact');
     }
 
     /*---------------------------------------------------------------------------------------------------------------------
@@ -317,5 +352,33 @@ class PagesController extends Controller
 
         return view('user-profile', compact('user'));
     }
+
+
+    /*---------------------------------------------------------------------------------------------------------------------
+
+                                                       | galleries |
+
+    ----------------------------------------------------------------------------------------------------------------------*/
+
+    /* show galleries page
+    ----------------------------------------------------------------------------------------------*/
+    public function galleries()
+    {
+        $galleries = Gallery::paginate(6);
+
+        return view('galleries', compact('galleries'));
+    }
+
+    /* show individual gallery
+   ----------------------------------------------------------------------------------------------*/
+    public function show_gallery($id)
+    {
+        $gallery = Gallery::findOrFail($id);
+
+        return view('gallery-view', compact('gallery'));
+    }
+
+
+
 
 }

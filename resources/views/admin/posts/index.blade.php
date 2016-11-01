@@ -32,6 +32,8 @@
                     <th>Title</th>
                     <th>Date Created</th>
                     <th>Date Updated</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
                 </tr>
             </thead>
             <!-- /.table headings -->
@@ -45,7 +47,10 @@
                         <img class="img-rounded img-responsive" width='100'
                              src="{{$post->photo ? '/images/posts/' . $post->photo->path : 'http://placehold.it/50x50'}}">
                     </td>
+
                     <td>{{$post->user->first_name . ' ' . $post->user->last_name}}</td>
+
+
                     <td>{{$post->title}}</td>
                     <td>{{$post->created_at}}</td>
                     <td>{{$post->updated_at}}</td>

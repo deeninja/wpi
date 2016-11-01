@@ -16,9 +16,9 @@ class CreateGalleriesTable extends Migration
         Schema::create('galleries', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('conference_id');
+            $table->integer('cover_image');
             $table->string('name');
             $table->integer('created_by');
-            $table->string('status')->default('Active');
             $table->timestamps();
         });
     }

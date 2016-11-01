@@ -5,6 +5,7 @@
         <!-- header -->
         <div class="col-md-12">
             <h1 class="page-header">Galleries | Link</h1>
+            @include('includes.form_error')
         </div>
         <!-- /.header -->
 
@@ -30,15 +31,7 @@
             </div>
             {!! Form::close() !!}
 
-            @if(count($errors) > 0)
-                <div class="alert alert-danger">
-                    <ul class="list-unstyled">
-                        @foreach($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif()
+
         </div>
 
         <div class="col-md-12">

@@ -3,7 +3,14 @@
 @section('content')
 
     <div class="content-container">
-
+        <!-- notifications -->
+        @if(Session::has('contact_sent'))
+            <div class="alert alert-success fade in">
+                <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                <h4>{{session('contact_sent')}}</h4>
+            </div>
+    @endif
+    <!-- /.notifications -->
         <div class="col-md-offset-3 col-md-6">
 
             <hr>
@@ -12,7 +19,8 @@
 
                 <h2 class="text">Contact Us!</h2>
                 <hr>
-                <form class="contact-form form-horizontal" action="{{url('/contact')}}" method="POST" id="contact_form">
+                <form class="contact-form form-horizontal" action="/contact" method="POST"
+                      id="contact_form">
                     {{csrf_field()}}
                     <!-- text input-->
 
@@ -77,12 +85,13 @@
                         <div class="col-md-12 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                <textarea class="form-control" name="message" placeholder="Message"></textarea>
+                                <textarea class="form-control" name="body_message" placeholder="Message"></textarea>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
+
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-primary pull-right">Send <span
                                         class="fa fa-send"></span></button>
@@ -98,5 +107,6 @@
         </div>
 
     </div>
+
 
 @endsection()

@@ -21,12 +21,13 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Post ID</th>
-                <th>Commenter Name</th>
-                <th>Commenter Email</th>
+                <th>Post</th>
+                <th>Name</th>
+                <th>Email</th>
                 <th>Comment</th>
                 <th>Created</th>
                 <th>Updated</th>
+                <th>&nbsp;</th>
             </tr>
             </thead>
             <!-- table headings -->
@@ -40,7 +41,7 @@
 
                         <td>{{$comment->id}}</td>
                         <td><a target="_blank" href="{{route('post.show',$comment->post_id)
-                        }}">{{$comment->post->id}}</a></td>
+                        }}">{{$comment->post_id}}</a></td>
                         <td>{{$comment->user->first_name . ' ' . $comment->user->last_name}}</td>
                         <td>{{$comment->user->email}}</td>
                         <td>{{$comment->content}}</td>

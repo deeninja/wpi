@@ -36,6 +36,9 @@
                     <th>Created By</th>
                     <th>Updated At</th>
                     <th>Created At</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+
                 </tr>
                 </thead>
                 <!-- /.table headers -->
@@ -55,11 +58,12 @@
 
                         @if(count($gallery->conference) > 0)
 
-                            <td>{{$gallery->conference->title}}</td>
+                            <td><a href="{{route('conference.show',$gallery->conference->id)}}">{{$gallery->conference->title}}</a></td>
 
                             @elseif( count($gallery->conference) === 0 )
 
-                                <td><a class="btn btn-info" href="{{route('galleries.link', $gallery->id)}}">Assign</a></td>
+                                <td><a class="btn btn-success" href="{{route('galleries.link', $gallery->id)
+                                }}">Assign to conference</a></td>
                             
                             @endif
                         <td>{{$gallery->created_by}}</td>
@@ -67,6 +71,8 @@
                         <td>{{$gallery->created_at}}</td>
                         <td><a href="{{route('galleries.show', $gallery->id)}}" class="btn
                         btn-primary">View</a></td>
+                        <td><a href="{{route('galleries.edit', $gallery->id)}}" class="btn
+                        btn-success">Edit</a></td>
 
                     </tr>
                 @endforeach

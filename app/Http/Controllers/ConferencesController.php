@@ -31,9 +31,6 @@ class ConferencesController extends Controller
     {
         $conferences = Conference::all();
 
-        /*  $conference = Conference::findOrFail(4);
-          dd();*/
-
         return view('admin.conferences.index', compact('conferences'));
     }
 
@@ -167,9 +164,10 @@ class ConferencesController extends Controller
         // find get url id conference
         $conference = Conference::findOrFail($id);
 
-        // destroy related image.
-        unlink(public_path() . '\\images\conferences\\' .  $conference->photo->path);
-
+        if($conference->photo) {
+            // destroy related image.
+            unlink(public_path() . '\\images\conferences\\' . $conference->photo->path);
+        }
 
         // delete the ei / record
         $conference->delete();

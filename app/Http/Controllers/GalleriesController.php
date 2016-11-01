@@ -41,7 +41,7 @@ class GalleriesController extends Controller
 
         if($file = $request->file('file')){
 
-            $name = $file->getClientOriginalName();
+            $name = time() . '-' . $file->getClientOriginalName();
 
             $file->move('gallery/images', $name);
 
@@ -60,17 +60,17 @@ class GalleriesController extends Controller
      */
     public function create()
     {
-        $gallery_status = Gallery::pluck('status');
-        return view('admin.gallery.create', compact('gallery_status'));
+
+        return view('admin.gallery.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * store gallery images.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GalleryAddRequest $request)
     {
         // get form data
         $form_data = $request->all();
@@ -89,10 +89,12 @@ class GalleriesController extends Controller
             $gallery->photos()->create(['path' => $name]);
 
         }
+
+
     }
 
     // stores gallery name
-    public function store_gallery(Request $request)
+    public function store_gallery(GalleryAddRequest $request)
     {
         // get current user
         $user = Auth::user();
@@ -100,8 +102,19 @@ class GalleriesController extends Controller
         // get form request data
         $form_data = $request->all();
 
-        // create gallery with name, status & created by
-        $gallery = Gallery::create(['name'=> $form_data['name'],'status' => $form_data['status'], 'created_by'=>$user->id]);
+        if($file = $request->file('cover_image')){
+
+            $name = time() . '-' . $file->getClientOriginalName();
+
+            $file->move('gallery/images', $name);
+
+            $form_data['cover_image'] = $name;
+
+        }
+
+        // create gallery with name & created by
+        $gallery = Gallery::create(['name'=> $form_data['name'],'cover_image'=>$form_data['cover_image'],
+        'created_by'=>$user->id]);
 
         // get id for redirect
         $id = $gallery->id;
@@ -177,9 +190,21 @@ class GalleriesController extends Controller
     public function update(GalleryEditRequest $request, $id)
     {
         $form_data = $request->all();
+
         $gallery = Gallery::findOrfail($id);
 
+        if($file = $request->file('cover_image')){
+
+            $name = $file->getClientOriginalName();
+
+            $file->move('gallery/images', $name);
+
+            $form_data['cover_image'] = $name;
+
+        }
+
         $gallery->name = $form_data['name'];
+        $gallery->cover_image = $form_data['cover_image'];
         $gallery->save();
 
         Session::flash('gallery_updated','The Gallery was successfully updated.');
@@ -201,6 +226,10 @@ class GalleriesController extends Controller
         if(!$gallery->created_by === Auth::user()->id){
             abort(403, 'You are not allowed to delete this gallery.');
         }
+
+
+        // destroy cover image
+        unlink(GALLERY_IMAGE_DIR . $gallery->cover_image);
 
         // get all gallery images
         $images = $gallery->photos->all();
@@ -236,7 +265,10 @@ class GalleriesController extends Controller
         // delete image record
         $photo->delete();
 
-        return Redirect::back()->with('image_deleted','Image Removed');
+
+
+        Session::flash('image_deleted', "Image removed successfully.");
+        return Redirect::back();
 
 
     }

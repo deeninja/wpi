@@ -6,6 +6,14 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
+                <!-- notifications -->
+                @if(Session::has('login_prompt'))
+                    <div class="alert alert-danger fade in">
+                        <a href="#" class="close" aria-label="close" data-dismiss="alert">&times;</a>
+                        <h4>{{session('login_prompt')}}</h4>
+                    </div>
+                @endif
+            <!-- /.notifications -->
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
