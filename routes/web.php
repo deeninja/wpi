@@ -133,6 +133,15 @@ define('IMAGE_USERS', public_path() . 'IMAGE_DIR' . '\\users\\');
 // gallery directory
 define('GALLERY_IMAGE_DIR', public_path() . '\\gallery\images\\');
 
+// mailgun
+define('MAILGUN_KEY', 'key-57984f0f7aa476d34fd737110e8071f9');
+define('MAILGUN_PUBKEY','pubkey-71491ff9e2191c0af3931fdc48d1e9bf');
+define('MAILGUN_DOMAIN','williamlangroudi.com');
+define('MAILGUN_LIST','testbot@sandbox099536ff9ed1403ebd2e665eaf77d3de.mailgun.org');
+define('MAILGUN_SECRET','green');
+
+
+
 /*----------------------------------------------------------------------------------------------
 |
 | front-end
@@ -201,3 +210,19 @@ Route::patch('/profile/update/{id}', [ 'as' => 'user.profile.update', 'uses' => 
 
 // comments
 Route::resource('admin/comments', 'CommentsController');
+
+// newsletter subscribe method
+Route::post('/newsletter/subscribe',['as'=>'newsletter.subscribe', 'uses' => 'MailController@newsletter_subscribe']);
+
+// show confirm success page
+Route::get('/subscribe',function() {
+    return view('subscribe');
+});
+
+// newsletter confirm method
+Route::get('/confirm/{hash}', ['as'=>'newsletter_confirm', 'uses' => 'MailController@newsletter_confirm']);
+
+// show confirm success page
+Route::get('/confirm',function() {
+    return view('confirm');
+});

@@ -35,9 +35,10 @@
             <!-- newsletter quick signup -->
             <div class="newsletter-quick-signup">
                 <h2>Sign up for our newsletter</h2>
-                <form action="" method="post">
+                <form action="{{route('newsletter.subscribe')}}" method="POST">
+                    {{csrf_field()}}
                     <input type="text" name="name" placeholder="Your Name">
-                    <input type="email" name="name" placeholder="Your Email">
+                    <input type="email" name="email" placeholder="Your Email">
                     <input type="submit" value="Sign up">
                 </form>
             </div>
